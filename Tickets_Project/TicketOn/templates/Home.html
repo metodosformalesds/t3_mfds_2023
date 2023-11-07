@@ -1,23 +1,36 @@
-{% extends 'Conex.html' %}
-
-{% block content %}
+{% extends 'Conex.html' %} {% block content %}
 <html>
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     {%load static%}
-    <link rel="stylesheet" href="{% static 'TicketOn/Home.css'%}"> 
+    <link rel="stylesheet" href="{% static 'TicketOn/Home.css'%}" />
     <title>TicketJaeger - Inicio</title>
-</head>
-<body>
-    
-   
-    <footer>
-        
-    </footer>
-</body>
-{% endblock %}
+  </head>
+  <body>
+    <div class="center">
+      {%load static%}<img src={%static 'TicketOn/image/Icon.png '%}>
+    </div>
+    <div class="center">
+      <a id="Nombrelogo">TicketJaeger</a>
+    </div>
+    <div class="center">
+      {% if user.is_authenticated %}
+      <button class="Contenedor">
+        <a href="/logout" id="nombrecontenedor">Cerrar sesión</a>
+      </button>
+      {% else %}
+      <button class="Contenedor">
+        <a href="/signup" id="nombrecontenedor">Registrarse</a>
+      </button>
+      <button class="Contenedor">
+        <a href="/signin" id="nombrecontenedor">Iniciar sesión</a>
+      </button>
+      {% endif %}
+    </div>
+    <footer></footer>
+  </body>
+  {% endblock %}
 </html>
-

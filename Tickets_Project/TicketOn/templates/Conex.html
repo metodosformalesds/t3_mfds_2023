@@ -1,40 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Ticket Jaeger</title>
-</head>
-<body>
+  </head>
+  <body>
     <header>
-        <diV id="main-nav_1">
-            <nav class="main-nav">
-                {%load static%}
-                
-                <img src="image/Icon.png" class="Logoimg">
-                <a href="" id="NombreTJ">TicketJaeger</a>
-                <a href="/">Inicio</a>
-                <a href="/eventos">Eventos</a>
-                <a href="">Ayuda</a>
-            </nav>
-        </div>
-        <div id="main-nav_2">
-            <nav class="main-nav">
-                <input id="barra" type="text" placeholder="Busqueda">
-                
-                {% if user.is_authenticated %}
-                <a href="/logout">Cerrar sesion</a>
-                {% else %}
-                <a href="/signup">Registrarse</a>
-                <a href="/signin">Iniciar sesion</a>
-                {% endif %}
-            </nav>
-        </div>
-        
+      <div id="main-nav_1">
+        <nav class="main-nav">
+          {%load static%} <img src={%static 'TicketOn/image/Icon.png '%}
+          class="Logoimg"/>
+          <a href="/home" id="NombreTJ">TicketJaeger</a>
+        </nav>
+      </div>
     </header>
-
-    {% block content %}
-    {% endblock %}
-
-</body>
+    {% block content %} {% endblock %}
+  </body>
 </html>
