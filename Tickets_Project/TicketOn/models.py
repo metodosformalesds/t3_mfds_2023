@@ -5,31 +5,46 @@ from django.contrib.auth.models import User
 
 class Comprador(models.Model):
     usuario=models.OneToOneField(User, on_delete=models.CASCADE)
-    correo=models.CharField(max_length=30)
+    correo=models.CharField(max_length=30,blank=True)
     
-    cvv=models.CharField(max_length=4)
-    num_tarjeta=models.CharField(max_length=16)
-    fecha_venc=models.DateField()
-    nombre_titular=models.CharField(max_length=100)
+    cvv=models.CharField(max_length=4,null=True)
+    num_tarjeta=models.CharField(max_length=16,null=True)
+    fecha_venc=models.DateField(null=True)
+    nombre_titular=models.CharField(max_length=100,null=True)
+    
+
+    def __str__(self):
+        return f"{self.usuario}"
 
 class Organizador(models.Model):
     usuario=models.OneToOneField(User, on_delete=models.CASCADE)
-    correo=models.CharField(max_length=30)
-    empresa=models.CharField(max_length=30)
+    correo=models.CharField(max_length=30,blank=True)
+    empresa=models.CharField(max_length=30,blank=True)
 
-    cuenta_clabe=models.CharField(max_length=18)
+    cuenta_clabe=models.CharField(max_length=18,null=True)
+    def __str__(self):
+        return f"{self.usuario}"
 
 class Evento(models.Model):
-    lugar=models.CharField(max_length=100)
-    hora=models.TimeField()
+    lugar=models.CharField(max_length=100,blank=True)
+    hora=models.TimeField(blank=True)
     fecha=models.DateField()
     nombre=models.CharField(max_length=100)
     cupo=models.IntegerField()
-    imagen=models.ImageField(upload_to="eventos")
+    imagen=models.ImageField(upload_to="eventos",blank=True)
     descripcion=models.TextField(max_length=1000)
-    TIPOS=[("1","Deportivo")]
-    tipo= models.CharField(max_length=2)
+    tipo= models.CharField(max_length=20)
     organizador=models.ForeignKey(Organizador,on_delete=models.CASCADE)
+    slug=models.SlugField(blank=True)
+
+    def __str__(self):
+        return f"{self.nombre}"
+    
+    def save(self,*args,**kwargs):
+        super().save(*args,**kwargs)
+        self.slug = self.id
+        super().save(*args,**kwargs)
+    
 
 class Ticket(models.Model):
     precio=models.FloatField()
@@ -38,6 +53,8 @@ class Ticket(models.Model):
     fecha_compra=models.DateField()
     evento=models.ForeignKey(Evento,on_delete=models.CASCADE)
     comprador=models.ForeignKey(Comprador,on_delete=models.CASCADE)
+    def __str__(self):
+        return f"{self.codigo}"
 
 class Transferencia(models.Model):
     fecha=models.DateField()
@@ -46,4 +63,6 @@ class Transferencia(models.Model):
     ticket=models.ForeignKey(Ticket,on_delete=models.CASCADE)
     organizador=models.ForeignKey(Organizador,on_delete=models.CASCADE)
     comprador=models.ForeignKey(Comprador,on_delete=models.CASCADE)
+
+    
 
