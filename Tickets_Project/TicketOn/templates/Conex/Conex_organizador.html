@@ -1,0 +1,26 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ticket Jaeger</title>
+  </head>
+  <body>
+    <header>
+      <div id="main-nav_1">
+        <nav class="main-nav">
+          <div id="divlogo">
+            {%load static%} <img src={%static 'TicketOn/image/Icon.png '%}
+            class="Logoimg"/>
+            <a href="/home" id="NombreTJ">TicketJaeger</a>
+          </div>
+          <div id="opciones">
+            <a href="/eventos_en_curso" id="NombreTJ">Eventos en curso</a>
+            <a href="/creacion_de_eventos" id="NombreTJ">Creación de eventos</a>
+          </div>
+          <a href="/home" id="NombreTJ">Cerrar Sesion</a>
+        </nav>
+      </div>
+    </header>
+    {% block content %} {% endblock %}
+  </body>
+</html>

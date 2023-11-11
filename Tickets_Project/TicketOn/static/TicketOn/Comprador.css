@@ -1,34 +1,34 @@
 /*---------------------------------Menu de navegacion---------------------------------*/
 body {
-    margin: 0px;
-    box-sizing: border-box;
-    background: #35B5DE;
-    
+  margin: 0px;
+  box-sizing: border-box;
+  background: #35b5de;
 }
 
 #main-nav_1 {
-    display: flex;
-    padding: 5px 5%;
-    justify-content: space-between;
-    box-shadow: 0px 10px 25px #00000043;
-    background-color: #357EDE;
-    height: 70px;
+  display: flex;
+  padding: 5px 5%;
+  justify-content: space-between;
+  box-shadow: 0px 10px 25px #00000043;
+  background-color: #357ede;
+  height: 70px;
 }
 
-#divlogo{
-    width: 20%;
-    display: flex;
-    justify-content:left
+#divlogo {
+  width: 20%;
+  display: flex;
+  justify-content: left;
 }
 
 .main-nav {
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-    padding: 15px;
-    display: flex;
-    padding-top: 18px;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  padding: 15px;
+  display: flex;
+  padding-top: 18px;
 }
+
 
 #main-nav_1 a{
     text-decoration: none;
@@ -43,27 +43,28 @@ body {
     justify-content: space-around;
     width: 50%;
 }
-  
+
 .Contenedor {
-    border: 3px;
-    background-color: #cbb000;
+  border: 3px;
+  background-color: #cbb000;
 }
 
 #nombrecontenedor {
-    color: #ffffff;
-    font-size: 20px;
-    text-decoration: none;
+  color: #ffffff;
+  font-size: 20px;
+  text-decoration: none;
 }
-  
+
 .Logoimg {
-    position: absolute;
-    width: 64px;
-    height: 64px;
-    left: 35px;
-    top: 8px;
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  left: 35px;
+  top: 8px;
 }
 
 #NombreTJ {
+
     text-decoration: none;
     padding-top: 0px;
     width: 137px;
@@ -227,3 +228,5 @@ form input{
     height: 25px;
     width: 50px;
 }
+
+

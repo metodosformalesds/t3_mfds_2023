@@ -3,7 +3,6 @@ body {
   margin: 0px;
   box-sizing: border-box;
   background: #f9e97f;
-  
 }
 
 header {
@@ -16,6 +15,9 @@ header {
 }
 
 .main-nav {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
   padding: 15px;
   display: flex;
   padding-top: 18px;
