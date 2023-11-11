@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 from django.http import HttpResponse
 from .forms import UserRegisterForm
+from .models import Evento
 
 # Inicio
 def Home(request):
@@ -74,7 +75,10 @@ def carrito(request):
 
 
 def detalles_evento(request,nombre_evento,evento_slug):
-    return render(request,'Detalles_Evento.html')
+    evento= Evento.objects.get(slug=evento_slug)
+    return render(request,'Detalles_Evento.html',{
+        "evento":evento
+    })
 
 
 

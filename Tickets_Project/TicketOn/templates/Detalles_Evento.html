@@ -7,44 +7,44 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         {%load static%}
         <link rel="stylesheet" href="{% static 'TicketOn/Comprador.css'%}" />
-        <title>Detalles Evento</title>
+        <title>Detalles Evento - {{evento.nombre}}</title>
 
     </head>
     <body>
         <div id="Tipo_evento">
-            <h2>"Tipo de evento"<h2>
+            <h2>Tipo: {{evento.tipo}}<h2>
         </div>
         <div id="info_evento">
-            <h2 id="nombre_evento">Nombre del evento</h2>
+            <h2 id="nombre_evento">{{evento.nombre}}</h2>
             <div id="bloque_1">
                 <div id="div_precio">
-                    <h2>Precio<h2>
+                    <h2>$ {{evento.precio}}<h2>
                 </div>
-                <img src=""></img>
+                <img src="{{evento.imagen.url}}"></img>
                 <div id="div_cupos">
-                    <h2>Cupos disponibles</h2>
+                    <h2>Cupos disponibles: {{evento.cupo}}</h2>
                 </div>
             </div>
             <div id="bloque_2">
                 <h2>Descripción</h2>
-                <p>Esto es la descripcion {% lorem 3 b random %}<p>
+                <p>{{evento.descripcion}}<p>
             </div>
 
             <div id="div_ubicacion">
                 <h2>Ubicacion:</h2>
-                <h2>Ubicacion del evento</h2>
+                <h2>{{evento.lugar}}</h2>
             </div>
 
             <div id="bloque_3">
                 <div id="bl3_1">
                     <div id="div_fechahora">
                         <h2>Fecha y Hora:</h2>
-                        <h2>dd/mm/yyyy - hh:mm</h2>
+                        <h2>{{evento.fecha}} - {{evento.hora}}</h2>
                     </div>
         
                     <div id="div_organizador">
                         <h2>Organizador:</h2>
-                        <h2>Organizador</h2>
+                        <h2>{{evento.organizador}}</h2>
                     </div>
                 </div>
                 <div id="bl3_2">
