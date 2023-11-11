@@ -68,3 +68,6 @@ def IS(request):
         else:
             login(request, user)
             return redirect ('eventos')
+        
+def detalles_evento(request,nombre_evento,evento_slug):
+    return render(request,'Detalles_Evento.html')
