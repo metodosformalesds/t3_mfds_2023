@@ -1,3 +1,4 @@
+/*---------------------------------Menu de navegacion---------------------------------*/
 body {
     margin: 0px;
     box-sizing: border-box;
@@ -29,6 +30,14 @@ body {
     padding-top: 18px;
 }
 
+#main-nav_1 a{
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: bold;
+    color: #000;
+    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+
 #opciones{
     display: flex;
     justify-content: space-around;
@@ -54,7 +63,6 @@ body {
     top: 8px;
 }
 
-  
 #NombreTJ {
     text-decoration: none;
     padding-top: 0px;
@@ -67,4 +75,155 @@ body {
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+}
+
+/*---------------------------------Cuerpo---------------------------------*/
+h2{
+    color: white;
+    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+    padding: 10px;
+    margin:auto;
+}
+
+#tipo_evento{
+    background-color: #193C69;
+    width: 390px;
+    height: 74px;
+}
+
+#tipo_evento h2{    font-size: 50px;}
+
+#info_evento{
+    width: 1300px;
+    height: fit-content;
+    margin: 70px auto ;
+}
+
+#nombre_evento{
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+    font-size: 40px;
+}
+
+#bloque_1{
+    display: flex;
+    justify-content: center;
+}
+
+#bloque_1 img{
+    border: solid #000;
+    width: 479px;
+    height: 342px;
+}
+
+#div_precio{
+    margin-top: 274px;
+    display: flex;
+    justify-content: center;
+    background-color: #193C69;
+    width: 410px;
+    height: 74px;
+}
+
+#div_precio h2{font-size: 40px;}
+
+#div_cupos{
+    margin-top: 274px;
+    display: flex;
+    justify-content: center;
+    background-color: #193C69;
+    width: 410px;
+    height: 74px;
+}
+
+#div_cupos h2{font-size: 30px;}
+
+#bloque_2{
+    
+    margin-top: 0px;
+    width: 100%;
+    height: fit-content;
+    background-color: #235391 ;
+}
+
+#bloque_2 h2{margin-top: 0px; font-size: 40px;}
+
+#bloque_2 p{
+    margin-top: 0px;
+    margin:auto;
+    color: #ffffff;
+    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+    padding: 10px;
+    font-size: 20px;
+}
+
+#div_ubicacion{
+    display: flex;
+    justify-content:start;
+    column-gap: 40px;
+    margin-top: 10px;
+    width: 100%;
+    height: fit-content;
+    background-color: #0F2440;
+}
+
+#div_ubicacion h2{margin-top: 0px; font-size: 30px;}
+
+#bloque_3{
+    display: flex;
+    justify-content: space-between;
+}
+
+#bl3_1{
+    width: 60%;
+}
+
+#bl3_2{
+    width: 40%;
+}
+
+#div_fechahora{
+    display: flex;
+    justify-content:start;
+    column-gap: 40px;
+    margin-top: 10px;
+    width: 100%;
+    height: fit-content;
+    background-color: #0F2440;
+}
+
+#div_fechahora h2{ margin-top: 0px; font-size: 30px;}
+
+#div_organizador{
+    display: flex;
+    justify-content:start;
+    column-gap: 40px;
+    margin-top: 10px;
+    width: 100%;
+    height: fit-content;
+    background-color: #0F2440;
+}
+
+#div_organizador h2{margin-top: 0px; font-size: 30px;}
+
+button{
+    margin: 20px 100px;
+    background-color: #D33A3A;
+    color: white;
+    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+    font-size: 25px;
+    width: 250px;
+    height: 80px;
+}
+
+form{
+    margin: 0px 30px;
+
+}
+
+form input{
+    border-radius: 10px;
+    height: 25px;
+    width: 50px;
 }
