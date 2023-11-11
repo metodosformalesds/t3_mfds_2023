@@ -47,6 +47,12 @@ def signup(request):
 def eventos(request):
     return render (request,'Eventos.html')
 
+def ayuda(request):
+    return render (request,'Ayuda.html')
+
+def carrito(request):
+    return render (request,'Carrito.html')
+
 def CS(request):
     logout(request)
     return redirect('home')

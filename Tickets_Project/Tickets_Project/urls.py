@@ -27,6 +27,8 @@ urlpatterns = [
     path('signup/', views.signup, name = 'signup'),
     path('eventos/', views.eventos, name = 'eventos'),
     path('logout/', views.CS, name = 'logout'),
-    path('signin/', views.IS, name = 'signin')
+    path('signin/', views.IS, name = 'signin'),
+    path('ayuda/',views.ayuda, name = 'ayuda'),
+    path('carrito/',views.carrito, name='carrito')
 
 ]

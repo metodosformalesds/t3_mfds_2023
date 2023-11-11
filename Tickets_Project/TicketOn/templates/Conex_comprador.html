@@ -8,19 +8,17 @@
     <header>
       <div id="main-nav_1">
         <nav class="main-nav">
-            <div id="divlogo">
-                {%load static%} <img src={%static 'TicketOn/image/Icon.png '%}
-                class="Logoimg"/>
-                <a href="/home" id="NombreTJ">TicketJaeger</a>
-            </div>
-            <div id="opciones">
-                <a href="/eventos">Eventos</a>
-                <a href="">Carrito</a>
-                <a href="">Ayuda</a>
-
-            </div>
-            
-            <a href="">Cerrar Sesion</a>
+          <div id="divlogo">
+            {%load static%} <img src={%static 'TicketOn/image/Icon.png '%}
+            class="Logoimg"/>
+            <a href="/home" id="NombreTJ">TicketJaeger</a>
+          </div>
+          <div id="opciones">
+            <a href="/eventos" id="NombreTJ">Eventos</a>
+            <a href="/carrito" id="NombreTJ">Carrito</a>
+            <a href="/ayuda" id="NombreTJ">Ayuda</a>
+          </div>
+          <a href="/home" id="NombreTJ">Cerrar Sesion</a>
         </nav>
       </div>
     </header>
