@@ -22,14 +22,22 @@ from TicketOn import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include("TicketOn.urls")),
+
+    #Inicio
     path('', views.Home, name = 'home'),
     path('home/',views.Home,name='home'),
-    path('signup/', views.signup, name = 'signup'),
+    path('comprador_login/',views.comprador_login, name='comprador_login'),
+    path('organizador_login', views.organizador_login, name='organizador_login'),
+    path('comprador_register/',views.comprador_register, name='comprador_register'),
+    path('organizador_register', views.organizador_register, name='organizador_register'),
+
+
+    #Comprador
     path('eventos/', views.eventos, name = 'eventos'),
-    path('logout/', views.CS, name = 'logout'),
-    path('signin/', views.IS, name = 'signin'),
     path('ayuda/',views.ayuda, name = 'ayuda'),
     path('carrito/',views.carrito, name='carrito'),
+
+    #Organizador
     path('eventos_en_curso/',views.Eventos_en_curso,name='eventos_en_curso'),
     path('creacion_de_eventos',views.Creacion_de_eventos, name='creacion_de_eventos'),
     path('editar_eventos',views.Editar_eventos, name='editar_eventos'),

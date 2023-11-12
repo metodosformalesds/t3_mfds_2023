@@ -17,20 +17,13 @@
       <a id="Nombrelogo">TicketJaeger</a>
     </div>
     <div class="center">
-      {% if user.is_authenticated %}
       <button class="Contenedor">
-        <a href="/logout" id="nombrecontenedor">Cerrar sesión</a>
-      </button>
-      {% else %}
-      <button class="Contenedor">
-        <a href="/signup" id="nombrecontenedor">Registrarse</a>
+        <a href="/comprador_login" id="nombrecontenedor">Comprador</a>
       </button>
       <button class="Contenedor">
-        <a href="/signin" id="nombrecontenedor">Iniciar sesión</a>
+        <a href="/organizador_login" id="nombrecontenedor">Organizador</a>
       </button>
-      {% endif %}
     </div>
-    <footer></footer>
   </body>
   {% endblock %}
 </html>

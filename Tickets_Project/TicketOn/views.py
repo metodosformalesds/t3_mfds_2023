@@ -12,55 +12,17 @@ from .models import Evento
 def Home(request):
     return render(request, 'Inicio/Home.html')
 
-def signup(request):
+def comprador_login(request):
+    return render(request, 'Inicio/comprador_login.html')
 
-    if request.method == 'GET':
-        return render(request, 'Inicio/login.html', {
-            'form': UserRegisterForm
-        })
-    else:
-        if request.POST['password1'] == request.POST['password2']:
-            # registro de usuario
-            try:
-                user = User.objects.create_user(
-                    username=request.POST['username'], password=request.POST['password1'])
-                user.save()
-                login(request, user)
-                return redirect('eventos')
-            except IntegrityError:
-                return render(request, 'Inicio/login.html', {
-                    'form': UserRegisterForm,
-                    "error": 'Usuario ya existe'
-                })
+def organizador_login(request):
+    return render(request, 'Inicio/organizador_login.html')
 
-        return render(request, 'Inicio/login.html', {
-            'form': UserRegisterForm,
-            "error": 'Contraseñas no coinciden'
-        })
- 
-def CS(request):
-    logout(request)
-    return redirect('home')
+def comprador_register(request):
+    return render(request, 'Inicio/comprador_register.html')
 
-def IS(request):
-    if request.method == 'GET':
-        return render (request, 'Inicio/signin.html', {
-            'form': AuthenticationForm
-        })
-    else:
-        user = authenticate(
-            request, username=request.POST['username'], password=request.POST
-            ['password'])
-        if user is None:
-            return render(request, 'Inicio/signin.html',{
-                'form': AuthenticationForm,
-                'error': 'Usario o contraseña incorrecto'
-            })
-        else:
-            login(request, user)
-            return redirect ('eventos')
-         
-
+def organizador_register(request):
+    return render(request, 'Inicio/organizador_register.html')
 
 #Comprador
 def eventos(request):
