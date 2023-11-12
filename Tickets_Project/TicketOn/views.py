@@ -4,8 +4,7 @@ from django.http import HttpResponse
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
-from django.http import HttpResponse
-from .forms import UserRegisterForm
+from .forms import UserRegisterForm, EventoForm
 from .models import Evento
 
 # Inicio
@@ -49,15 +48,18 @@ def Eventos_en_curso(request):
     return render(request, 'Organizador/Eventos_en_curso.html')
 
 def Creacion_de_eventos(request):
-    return render(request, 'Organizador/Creacion_de_eventos.html')
+    if request.method == 'GET':
+        return render(request, 'Organizador/Creacion_de_eventos.html',{
+            'form': EventoForm
+        })
+    else:
+        print(request.POST)
+        return render(request, 'Organizador/Creacion_de_eventos.html',{
+            'form': EventoForm
+        })
 
 def Editar_eventos(request):
     return render(request, 'Organizador/Editar_eventos.html')
 
 def Ventas(request):
     return render(request, 'Organizador/Ventas.html')
-
-
-
-
-
