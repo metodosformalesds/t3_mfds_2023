@@ -1,0 +1,11 @@
+{% extends 'Conex/Conex.html' %} {% block content %} {%load static%}
+<link rel="stylesheet" href="{% static 'TicketOn/Home.css'%}" />
+<h1>Inicia sesion Organizador</h1>
+
+{{error}} {%load static%}
+<form action="/Signin_Organizador/" method="POST">
+  {% csrf_token %} {{form.as_p}}
+
+  <button>Entrar</button>
+</form>
+{% endblock %}

@@ -17,6 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.urls import include
+from django.contrib.auth.views import LoginView, LogoutView
 from TicketOn import views
 
 urlpatterns = [
@@ -31,8 +32,9 @@ urlpatterns = [
     path('ayuda/',views.ayuda, name = 'ayuda'),
     path('carrito/',views.carrito, name='carrito'),
     path('eventos_en_curso/',views.Eventos_en_curso,name='eventos_en_curso'),
-    path('eventos/creacion/',views.Creacion_de_eventos, name='creacion_de_eventos'),
+    path('creacion_de_eventos/',views.Creacion_de_eventos, name='creacion_de_eventos'),
     path('editar_eventos/',views.Editar_eventos, name='editar_eventos'),
-    path('ventas/',views.Ventas, name='ventas')
+    path('ventas/',views.Ventas, name='ventas'),
+    path('Login_Organizador/', views.OrganizadorRegister, name = 'Login_Organizador')
 
 ]

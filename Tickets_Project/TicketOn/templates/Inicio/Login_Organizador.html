@@ -1,0 +1,10 @@
+{% extends 'Conex/Conex.html' %} {% block content %} {%load static%}
+<link rel="stylesheet" href="{% static 'TicketOn/Home.css'%}" />
+<h1>Registrate como Organizador</h1>
+{{error}}
+<form action="/Login_Organizador/" method="post">
+  {% csrf_token%} {{form.as_p}}
+
+  <button>Registrarse</button>
+</form>
+{% endblock %}
