@@ -1,6 +1,8 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
+from django.forms import ModelForm
+from .models import Evento
 
 class UserRegisterForm(UserCreationForm):
     email = forms.EmailField()
@@ -11,3 +13,9 @@ class UserRegisterForm(UserCreationForm):
         model = User
         fields = ['username','email','password1','password2']
         help_texts = {k: "" for k in fields }
+
+
+class EventoForm(ModelForm):
+    class Meta:
+        model = Evento
+        fields = ['nombre', 'descripcion', 'tipo','hora','lugar','fecha','precio']

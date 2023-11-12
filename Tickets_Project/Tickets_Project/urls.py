@@ -31,8 +31,8 @@ urlpatterns = [
     path('ayuda/',views.ayuda, name = 'ayuda'),
     path('carrito/',views.carrito, name='carrito'),
     path('eventos_en_curso/',views.Eventos_en_curso,name='eventos_en_curso'),
-    path('creacion_de_eventos',views.Creacion_de_eventos, name='creacion_de_eventos'),
-    path('editar_eventos',views.Editar_eventos, name='editar_eventos'),
+    path('eventos/creacion/',views.Creacion_de_eventos, name='creacion_de_eventos'),
+    path('editar_eventos/',views.Editar_eventos, name='editar_eventos'),
     path('ventas/',views.Ventas, name='ventas')
 
 ]
