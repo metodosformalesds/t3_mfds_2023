@@ -4,6 +4,9 @@ body {
   box-sizing: border-box;
   background: #35b5de;
 }
+.margen {
+  margin-top: 5%;
+}
 
 #main-nav_1 {
   display: flex;
@@ -12,6 +15,9 @@ body {
   box-shadow: 0px 10px 25px #00000043;
   background-color: #357ede;
   height: 70px;
+  top: 0;
+  position: fixed;
+  width: 100%;
 }
 
 #divlogo {
@@ -27,21 +33,21 @@ body {
   padding: 15px;
   display: flex;
   padding-top: 18px;
+  padding-right: 100px;
 }
 
-
-#main-nav_1 a{
-    text-decoration: none;
-    font-size: 20px;
-    font-weight: bold;
-    color: #000;
-    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+#main-nav_1 a {
+  text-decoration: none;
+  font-size: 20px;
+  font-weight: bold;
+  color: #000;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
 
-#opciones{
-    display: flex;
-    justify-content: space-around;
-    width: 50%;
+#opciones {
+  display: flex;
+  justify-content: space-around;
+  width: 50%;
 }
 
 .Contenedor {
@@ -64,169 +70,183 @@ body {
 }
 
 #NombreTJ {
-
-    text-decoration: none;
-    padding-top: 0px;
-    width: 137px;
-    flex-shrink: 0;
-    color: #000;
-    text-align: center;
-    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
+  text-decoration: none;
+  padding-top: 0px;
+  width: 137px;
+  flex-shrink: 0;
+  color: #000;
+  text-align: center;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
 
 /*---------------------------------Cuerpo---------------------------------*/
-h2{
-    color: white;
-    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-    padding: 10px;
-    margin:auto;
+h2 {
+  color: white;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  padding: 10px;
+  margin: auto;
 }
 
-#tipo_evento{
-    background-color: #193C69;
-    width: 390px;
-    height: 74px;
+#tipo_evento {
+  width: 100%;
+  background-color: #193c69;
+  width: 390px;
+  height: 74px;
 }
 
-#tipo_evento h2{    font-size: 50px;}
-
-#info_evento{
-    width: 1300px;
-    height: fit-content;
-    margin: 70px auto ;
+#tipo_evento h2 {
+  font-size: 50px;
 }
 
-#nombre_evento{
-    display: flex;
-    justify-content: center;
-    margin: 20px;
-    font-size: 40px;
+#info_evento {
+  width: 1300px;
+  height: fit-content;
+  margin: 70px auto;
 }
 
-#bloque_1{
-    display: flex;
-    justify-content: center;
+#nombre_evento {
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+  font-size: 40px;
 }
 
-#bloque_1 img{
-    border: solid #000;
-    width: 479px;
-    height: 342px;
+#bloque_1 {
+  display: flex;
+  justify-content: center;
 }
 
-#div_precio{
-    margin-top: 274px;
-    display: flex;
-    justify-content: center;
-    background-color: #193C69;
-    width: 410px;
-    height: 74px;
+#bloque_1 img {
+  border: solid #000;
+  width: 479px;
+  height: 342px;
 }
 
-#div_precio h2{font-size: 40px;}
-
-#div_cupos{
-    margin-top: 274px;
-    display: flex;
-    justify-content: center;
-    background-color: #193C69;
-    width: 410px;
-    height: 74px;
+#div_precio {
+  margin-top: 274px;
+  display: flex;
+  justify-content: center;
+  background-color: #193c69;
+  width: 410px;
+  height: 74px;
 }
 
-#div_cupos h2{font-size: 30px;}
-
-#bloque_2{
-    
-    margin-top: 0px;
-    width: 100%;
-    height: fit-content;
-    background-color: #235391 ;
+#div_precio h2 {
+  font-size: 40px;
 }
 
-#bloque_2 h2{margin-top: 0px; font-size: 40px;}
-
-#bloque_2 p{
-    margin-top: 0px;
-    margin:auto;
-    color: #ffffff;
-    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-    padding: 10px;
-    font-size: 20px;
+#div_cupos {
+  margin-top: 274px;
+  display: flex;
+  justify-content: center;
+  background-color: #193c69;
+  width: 410px;
+  height: 74px;
 }
 
-#div_ubicacion{
-    display: flex;
-    justify-content:start;
-    column-gap: 40px;
-    margin-top: 10px;
-    width: 100%;
-    height: fit-content;
-    background-color: #0F2440;
+#div_cupos h2 {
+  font-size: 30px;
 }
 
-#div_ubicacion h2{margin-top: 0px; font-size: 30px;}
-
-#bloque_3{
-    display: flex;
-    justify-content: space-between;
+#bloque_2 {
+  margin-top: 0px;
+  width: 100%;
+  height: fit-content;
+  background-color: #235391;
 }
 
-#bl3_1{
-    width: 60%;
+#bloque_2 h2 {
+  margin-top: 0px;
+  font-size: 40px;
 }
 
-#bl3_2{
-    width: 40%;
+#bloque_2 p {
+  margin-top: 0px;
+  margin: auto;
+  color: #ffffff;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  padding: 10px;
+  font-size: 20px;
 }
 
-#div_fechahora{
-    display: flex;
-    justify-content:start;
-    column-gap: 40px;
-    margin-top: 10px;
-    width: 100%;
-    height: fit-content;
-    background-color: #0F2440;
+#div_ubicacion {
+  display: flex;
+  justify-content: start;
+  column-gap: 40px;
+  margin-top: 10px;
+  width: 100%;
+  height: fit-content;
+  background-color: #0f2440;
 }
 
-#div_fechahora h2{ margin-top: 0px; font-size: 30px;}
-
-#div_organizador{
-    display: flex;
-    justify-content:start;
-    column-gap: 40px;
-    margin-top: 10px;
-    width: 100%;
-    height: fit-content;
-    background-color: #0F2440;
+#div_ubicacion h2 {
+  margin-top: 0px;
+  font-size: 30px;
 }
 
-#div_organizador h2{margin-top: 0px; font-size: 30px;}
-
-button{
-    margin: 20px 100px;
-    background-color: #D33A3A;
-    color: white;
-    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-    font-size: 25px;
-    width: 250px;
-    height: 80px;
+#bloque_3 {
+  display: flex;
+  justify-content: space-between;
 }
 
-form{
-    margin: 0px 30px;
-
+#bl3_1 {
+  width: 60%;
 }
 
-form input{
-    border-radius: 10px;
-    height: 25px;
-    width: 50px;
+#bl3_2 {
+  width: 40%;
 }
 
+#div_fechahora {
+  display: flex;
+  justify-content: start;
+  column-gap: 40px;
+  margin-top: 10px;
+  width: 100%;
+  height: fit-content;
+  background-color: #0f2440;
+}
 
+#div_fechahora h2 {
+  margin-top: 0px;
+  font-size: 30px;
+}
+
+#div_organizador {
+  display: flex;
+  justify-content: start;
+  column-gap: 40px;
+  margin-top: 10px;
+  width: 100%;
+  height: fit-content;
+  background-color: #0f2440;
+}
+
+#div_organizador h2 {
+  margin-top: 0px;
+  font-size: 30px;
+}
+
+button {
+  margin: 20px 100px;
+  background-color: #d33a3a;
+  color: white;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-size: 25px;
+  width: 250px;
+  height: 80px;
+}
+
+form {
+  margin: 0px 30px;
+}
+
+form input {
+  border-radius: 10px;
+  height: 25px;
+  width: 50px;
+}
