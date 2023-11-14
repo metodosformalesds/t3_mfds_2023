@@ -2,6 +2,7 @@
 <link rel="stylesheet" href="{% static 'TicketOn/Organizador.css'%}" />
 <h1>Creacion de eventos</h1>
 
+
 {{error}}
 <form action="/creacion_de_eventos/" method="POST">
   {% csrf_token %} {{form.as_p}}
