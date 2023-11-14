@@ -1,3 +1,6 @@
+# t3_mfds_2023
+pip install -r requirements.txt
+
 # SRS
 https://docs.google.com/document/d/1Ytm0gY4sVT8dwwtvwXrxHAEfI-L_FRzi90hAbMpXBmk/edit#heading=h.l3k626ffw7jh
 
