@@ -1,9 +1,5 @@
 from django.contrib import admin
-from .models import Comprador
-from .models import Organizador
-from .models import Evento
-from .models import Ticket
-from .models import Transferencia
+from .models import *
 
 class EventoAdmin(admin.ModelAdmin):
     readonly_fields=("slug",)

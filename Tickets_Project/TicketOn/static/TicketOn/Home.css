@@ -31,7 +31,7 @@ header {
 
 .Contenedor {
   padding: 10px;
-  margin-top: 3%;
+  margin-top: 1%;
   position: center;
   border: 3px;
   background-color: #cbb000;
@@ -59,13 +59,13 @@ header {
   text-align: center;
   color: #000;
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-  font-size: 70px;
+  font-size: 60px;
 }
 
 #NombreTJ {
   text-decoration: none;
   padding-top: 10px;
-  width: 137px;
+  width: 140px;
   flex-shrink: 0;
   color: #000;
   text-align: center;

@@ -4,15 +4,26 @@ from sqlite3 import IntegrityError
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm 
-from django.contrib.auth.models import User
-from django.contrib.auth import login, logout, authenticate
 from .forms import UserRegisterForm, EventoForm, OrganizadorForm
 from .models import Evento
+from django.contrib.auth import login as auth_login
+from allauth.account.decorators import login_required
+
+
+def register(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, f"El usuario ha sido registrado exitosamente!")
+            return redirect('TicketOn:eventos')
+        else:
+            messages.success(request, "No se pudo registrar el usuario, vuelva a intenarlo!")
+
+    return render(request, 'Inicio/comprador_register.html')
+
 
 # Inicio
-def login(request):
-    return render(request, 'account/login.html')
-
 def Home(request):
     return render(request, 'Inicio/Home.html')
 
@@ -29,18 +40,20 @@ def organizador_register(request):
     return render(request, 'Inicio/organizador_register.html')
 
 #Comprador
+@login_required
 def eventos(request):
     eventos = Evento.objects.all()
     return render (request,'Comprador/Eventos.html',{'eventos':eventos})
 
+@login_required
 def ayuda(request):
     return render (request,'Comprador/Ayuda.html')
 
+@login_required
 def carrito(request):
     return render (request,'Comprador/Carrito.html')
 
-
-
+@login_required
 def detalles_evento(request,nombre_evento,evento_slug):
     evento= Evento.objects.get(slug=evento_slug)
     return render(request,'Comprador/Detalles_Evento.html',{
@@ -50,6 +63,7 @@ def detalles_evento(request,nombre_evento,evento_slug):
 
 
 #Organizador
+
 def Eventos_en_curso(request):
     return render(request, 'Organizador/Eventos_en_curso.html')
 

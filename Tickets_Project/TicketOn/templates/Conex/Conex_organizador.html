@@ -11,16 +11,20 @@
           <div id="divlogo">
             {%load static%} <img src={%static 'TicketOn/image/Icon.png '%}
             class="Logoimg"/>
-            <a href="/home" id="NombreTJ">TicketJaeger</a>
+            <a id="NombreTJ">TicketJaeger</a>
           </div>
           <div id="opciones">
-            <a href="/eventos_en_curso" id="NombreTJ">Eventos en curso</a>
-            <a href="/eventos/creacion/" id="NombreTJ">Creación de eventos</a>
+            <a href="/organizador/eventos/curso/" id="NombreTJ"
+              >Eventos en curso</a
+            >
+            <a href="/organizador/eventos/creacion/" id="NombreTJ"
+              >Creación de eventos</a
+            >
           </div>
-          <a href="/home" id="NombreTJ">Cerrar Sesion</a>
+          <a href="/accounts/logout/" id="NombreTJ">Cerrar Sesion</a>
         </nav>
       </div>
     </header>
-    {% block content %} {% endblock %}
+    <div class="margen">{% block content %} {% endblock %}</div>
   </body>
 </html>

@@ -6,13 +6,12 @@ from .models import Evento, Organizador
 
 class UserRegisterForm(UserCreationForm):
     email = forms.EmailField()
-    password1 = forms.CharField(label='Contraseña', widget=forms.PasswordInput)
-    password2 = forms.CharField(label= 'Confirma contraseña', widget=forms.PasswordInput)
+    password1 = forms.CharField(widget=forms.PasswordInput)
+    password2 = forms.CharField(widget=forms.PasswordInput)
 
     class Meta:
         model = User
-        fields = ['username','email','password1','password2']
-        help_texts = {k: "" for k in fields }
+        fields = ['username', 'email', 'password1', 'password2']
 
 
 class EventoForm(ModelForm):

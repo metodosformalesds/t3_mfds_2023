@@ -4,12 +4,8 @@
 
 {{error}}
 <form action="/creacion_de_eventos/" method="POST">
-
-    {% csrf_token %}
-    {{form.as_p}}
-    <button>
-        save
-    </button>
+  {% csrf_token %} {{form.as_p}}
+  <button>save</button>
 </form>
 
 {% endblock %}
