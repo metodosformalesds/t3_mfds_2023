@@ -108,6 +108,7 @@ USE_I18N = True
 
 USE_TZ = True
 
+USE_L10N = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
@@ -128,9 +129,10 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 
+
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 LOGIN_REDIRECT_URL ='comprador/eventos'
 
-ACCOUNT_EMAIL_REQUIRED = True
+
 ACCOUNT_LOGIN_ATTEMPTS_LIMIT= None

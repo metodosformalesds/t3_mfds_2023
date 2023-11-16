@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.forms import ModelForm
-from .models import Evento, Organizador
+from .models import Evento, Organizador , Comprador
 
 class UserRegisterForm(UserCreationForm):
     email = forms.EmailField()

@@ -5,7 +5,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm 
 from .forms import UserRegisterForm, EventoForm, OrganizadorForm
-from .models import Evento
+from .models import Evento ,Comprador
 from django.contrib.auth import login as auth_login
 from allauth.account.decorators import login_required
 
@@ -19,7 +19,6 @@ def register(request):
             return redirect('TicketOn:eventos')
         else:
             messages.success(request, "No se pudo registrar el usuario, vuelva a intenarlo!")
-
     return render(request, 'Inicio/comprador_register.html')
 
 
@@ -42,8 +41,21 @@ def organizador_register(request):
 #Comprador
 @login_required
 def eventos(request):
-    eventos = Evento.objects.all()
-    return render (request,'Comprador/Eventos.html',{'eventos':eventos})
+    if request.method =="GET":
+        eventos = Evento.objects.all()
+        return render (request,'Comprador/Eventos.html',{
+            'eventos':eventos
+        })
+    else:
+        nombre_busq = request.POST["nombre"]
+        eventos = Evento.objects.filter(nombre__contains = nombre_busq)
+        return render (request,'Comprador/Eventos.html',{
+            'eventos':eventos,
+            'nombre_busq': nombre_busq
+        })
+    
+    
+    
 
 @login_required
 def ayuda(request):

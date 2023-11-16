@@ -21,7 +21,7 @@ urlpatterns = [
     path('comprador/eventos/', views.eventos, name = 'eventos'),
     path('comprador/ayuda/',views.ayuda, name = 'ayuda'),
     path('comprador/carrito/',views.carrito, name='carrito'),
-    path('comprador/eventos/<nombre_evento>/<evento_slug>',views.detalles_evento,name="detalles_evento"), #probar ejemplo /comprador/eventos/Evento%20Prueba/1
+    path('comprador/eventos/<nombre_evento>/<evento_slug>',views.detalles_evento, name="detalles_evento"), #probar ejemplo /comprador/eventos/Evento%20Prueba/1
 
     #Organizador
     path('organizador/eventos/curso/',views.Eventos_en_curso,name='eventos_en_curso'),
