@@ -2,14 +2,14 @@ body {
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   margin: 0;
   padding: 0;
-  margin-top: 100px;
-  background-color: #6e870a;
+  margin-top: 60px;
+  background-color: #f9e97f;
 }
 
 header {
   justify-content: center;
   align-items: center;
-  background-color: #93c012;
+  background-color: #ffcd3b;
   color: 000000;
   padding: 10px;
   display: flex;
@@ -42,31 +42,4 @@ a {
   font-size: 24px;
   font-weight: bold;
   text-decoration: none;
-}
-
-nav {
-  margin-left: auto;
-}
-
-nav ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-}
-
-nav li {
-  margin-right: 250px;
-}
-
-nav a {
-  color: #000000;
-  text-decoration: none;
-  font-size: 20px;
-  font-weight: bold;
-  transition: color 0.3s ease-in-out;
-}
-
-nav a:hover {
-  color: #555555; /* Cambia el color al pasar el ratón por encima */
 }

@@ -8,13 +8,15 @@ app_name = "TicketOn"
 urlpatterns = [
 
     path('comprador/register/', views.register, name="register"),
-    path('comprador/login/',views.comprador_login, name='comprador_login'),
+    path('comprador/login/',views.my_login, name='my-login'),
+    path('comprador/logout', views.user_logout, name="user-logout"),
+
 
     #Inicio
     path('', views.Home, name = 'home'),
     path('home/',views.Home,name='home'),
-    path('organizador/login/', views.organizador_login, name='organizador_login'),
-    path('organizador/register/', views.organizador_register, name='organizador_register'),
+    path('organizador/login/', views.my_loginOrganizador, name='my_loginO'),
+    path('organizador/register/', views.registerOrganizador, name='register'),
 
 
     #Comprador

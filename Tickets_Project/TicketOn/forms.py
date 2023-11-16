@@ -2,24 +2,35 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.forms import ModelForm
-from .models import Evento, Organizador , Comprador
+from .models import *
+from django.forms.widgets import PasswordInput, TextInput
 
-class UserRegisterForm(UserCreationForm):
-    email = forms.EmailField()
-    password1 = forms.CharField(widget=forms.PasswordInput)
-    password2 = forms.CharField(widget=forms.PasswordInput)
+
+class CreateUserForm(UserCreationForm):
 
     class Meta:
+
         model = User
         fields = ['username', 'email', 'password1', 'password2']
 
+class LoginForm(AuthenticationForm):
 
-class EventoForm(ModelForm):
-    class Meta:
-        model = Evento
-        fields = ['nombre', 'descripcion', 'tipo','hora','lugar','fecha','precio']
+    username = forms.CharField(widget=TextInput())
+    password = forms.CharField(widget=PasswordInput())
+
 
 class OrganizadorForm(ModelForm):
     class Meta:
+
         model = Organizador
-        fields = ['usuario', 'correo', 'empresa', 'cuenta_clabe']
+        fields = ['empresa']
+
+class EventosForm(ModelForm):
+    class Meta:
+
+        model = Evento
+        fields = ['lugar','hora','fecha','nombre','cupo','imagen','descripcion','tipo','precio']   
+        widgets = {
+            'imagen': forms.ClearableFileInput(attrs={'multiple': True}),
+        }     
+

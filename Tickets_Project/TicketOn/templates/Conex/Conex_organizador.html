@@ -1,30 +1,27 @@
-<html lang="en">
+<!DOCTYPE html>
+<html lang="es">
   <head>
+    {%load static%}
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Ticket Jaeger</title>
+    <title>TicketJaeger</title>
   </head>
   <body>
     <header>
-      <div id="main-nav_1">
-        <nav class="main-nav">
-          <div id="divlogo">
-            {%load static%} <img src={%static 'TicketOn/image/Icon.png '%}
-            class="Logoimg"/>
-            <a id="NombreTJ">TicketJaeger</a>
-          </div>
-          <div id="opciones">
-            <a href="/organizador/eventos/curso/" id="NombreTJ"
-              >Eventos en curso</a
-            >
-            <a href="/organizador/eventos/creacion/" id="NombreTJ"
-              >Creación de eventos</a
-            >
-          </div>
-          <a href="/accounts/logout/" id="NombreTJ">Cerrar Sesion</a>
-        </nav>
-      </div>
+      <img id="logo" src={%static 'TicketOn/image/Icon.png '%} alt="Logo de
+      TicketJaeger" />
+      <a id="brand" href="/home/">TicketJaeger</a>
+      <nav>
+        <ul>
+          <li><a href="/organizador/eventos/curso/">Eventos en curso</a></li>
+          <li>
+            <a href="/organizador/eventos/creacion/">Creación de eventos</a>
+          </li>
+          <li><a href="/comprador/logout">Cerrar sesión</a></li>
+        </ul>
+      </nav>
     </header>
-    <div class="margen">{% block content %} {% endblock %}</div>
+
+    {% block content %} {% endblock %}
   </body>
 </html>

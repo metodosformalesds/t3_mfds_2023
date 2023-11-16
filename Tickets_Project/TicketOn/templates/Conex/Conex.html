@@ -1,20 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
   <head>
+    {%load static%}
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Ticket Jaeger</title>
+    <title>TicketJaeger</title>
   </head>
   <body>
     <header>
-      <div id="main-nav_1">
-        <nav class="main-nav">
-          {%load static%} <img src={%static 'TicketOn/image/Icon.png '%}
-          class="Logoimg"/>
-          <a href="/home" id="NombreTJ">TicketJaeger</a>
-        </nav>
-      </div>
+      <img id="logo" src={%static 'TicketOn/image/Icon.png '%} alt="Logo de
+      TicketJaeger" />
+      <a id="brand" href="/home/">TicketJaeger</a>
     </header>
-    <div class="margen">{% block content %} {% endblock %}</div>
+
+    {% block content %} {% endblock %}
   </body>
 </html>

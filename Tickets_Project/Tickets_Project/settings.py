@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'allauth',
     'allauth.account',
+    'allauth.socialaccount.providers.google',
     'allauth.socialaccount',
     'googleauthentication',
 ]
@@ -43,7 +44,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    "allauth.account.middleware.AccountMiddleware",
+    "allauth.account.middleware.AccountMiddleware"
 ]
 
 ROOT_URLCONF = 'Tickets_Project.urls'
@@ -66,7 +67,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'Tickets_Project.wsgi.application'
 SITE_ID=1
-
+SOCIALACCOUNT_LOGIN_ON_GET=True
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
@@ -106,9 +107,9 @@ TIME_ZONE = 'America/Mexico_city'
 
 USE_I18N = True
 
-USE_TZ = True
-
 USE_L10N = True
+
+USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
@@ -129,10 +130,22 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        }
+    }
+}
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 LOGIN_REDIRECT_URL ='comprador/eventos'
+ACCOUNT_EMAIL_REQUIRED=True
 
 
 ACCOUNT_LOGIN_ATTEMPTS_LIMIT= None
