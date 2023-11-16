@@ -60,18 +60,21 @@ def my_login(request):
 #Sesión Organizador
 def registerOrganizador(request):
     auth.logout(request)
-    form = CreateUserForm()
+    user_form = CreateUserForm()
+    organizador_form = OrganizadorForm()
 
     if request.method == "POST":
-        form = CreateUserForm(request.POST)
+        user_form = CreateUserForm(request.POST)
+        organizador_form = OrganizadorForm(request.POST)
 
-        if form.is_valid():
-            user = form.save()
+        if user_form.is_valid() and organizador_form.is_valid():
+            user = user_form.save()
             email = user.email
-            Organizador.objects.create(usuario=user,correo=email)
+            empresa = organizador_form.cleaned_data['empresa']
+            Organizador.objects.create(usuario=user, correo=email, empresa=empresa)
             return redirect("TicketOn:my_loginO")
 
-    context = {'registerform': form}
+    context = {'registerform': user_form, 'OrganizadorForm': organizador_form}
     return render(request, 'Inicio/organizador_register.html', context=context)
     
 def my_loginOrganizador(request):

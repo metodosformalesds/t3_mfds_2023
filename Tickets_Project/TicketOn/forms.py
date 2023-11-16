@@ -19,12 +19,9 @@ class LoginForm(AuthenticationForm):
     password = forms.CharField(widget=PasswordInput())
 
 
-class EventoForm(ModelForm):
-    class Meta:
-        model = Evento
-        fields = ['nombre', 'descripcion', 'tipo','hora','lugar','fecha','precio']
-
 class OrganizadorForm(ModelForm):
     class Meta:
+
         model = Organizador
-        fields = ['usuario', 'correo', 'empresa', 'cuenta_clabe']
+        fields = ['empresa']
+
