@@ -1,4 +1,4 @@
-{% extends 'Conex/Conex.html' %} {% block content %} {%load static%}
+{% extends 'Conex/Conex.html' %} {% block content %}{%load static%}
 <link rel="stylesheet" href="{% static 'TicketOn/Inicio.css'%}" />
 <style>
   body {
@@ -76,25 +76,19 @@
 <div id="login-container">
   <h1>Comprador</h1>
   <form method="POST" autocomplete="off">
-    <h2>Registrarse</h2>
+    <h2>Iniciar Sesión</h2>
 
     {% csrf_token %}
-    <label for="{{ registerform.username.id_for_label }}">Usuario:</label>
-    {{ registerform.username }}
+    <label for="{{ loginform.username.id_for_label }}">Usuario:</label>
+    {{ loginform.username }}
 
-    <label for="{{ registerform.email.id_for_label }}">Correo:</label>
-    {{ registerform.email }}
-
-    <label for="{{ registerform.password1.id_for_label }}">Contraseña:</label>
-    {{ registerform.password1}}
-
-    <label for="{{ registerform.password2.id_for_label }}"
-      >Confirmar contraseña:</label
-    >
-    {{ registerform.password2}}
+    <label for="{{ loginform.password.id_for_label }}">Contraseña:</label>
+    {{ loginform.password }}
 
     <input type="submit" value="Ingresar" />
   </form>
-  <a href="/comprador/login/"> Iniciar Sesión </a>
+
+  <a href="/comprador/register/">Registrarse</a>
 </div>
+
 {% endblock %}

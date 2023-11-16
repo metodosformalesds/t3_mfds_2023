@@ -1,26 +1,133 @@
-from django.contrib import messages
-from multiprocessing import context
-from sqlite3 import IntegrityError
-from django.shortcuts import render, redirect
+from typing import Self
+from functools import wraps
 from django.http import HttpResponse
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm 
-from .forms import UserRegisterForm, EventoForm, OrganizadorForm
-from .models import Evento
+from django.shortcuts import render, redirect
+from .forms import *
+from .models import *
+from django.contrib.auth.models import auth
 from django.contrib.auth import login as auth_login
+from django.contrib.auth import authenticate, login, logout
 from allauth.account.decorators import login_required
 
-
+#Sesión comprador
 def register(request):
-    if request.method == 'POST':
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            messages.success(request, f"El usuario ha sido registrado exitosamente!")
-            return redirect('TicketOn:eventos')
-        else:
-            messages.success(request, "No se pudo registrar el usuario, vuelva a intenarlo!")
+    auth.logout(request)
+    form = CreateUserForm()
 
-    return render(request, 'Inicio/comprador_register.html')
+    if request.method == "POST":
+        form = CreateUserForm(request.POST)
+
+        if form.is_valid():
+            user = form.save()
+            email = user.email
+            Comprador.objects.create(usuario=user,correo=email)
+            return redirect("TicketOn:my-login")
+
+    context = {'registerform': form}
+    return render(request, 'Inicio/comprador_register.html', context=context)
+    
+def my_login(request):
+    auth.logout(request)
+    form = LoginForm()
+
+    if request.method == 'POST':
+
+        form = LoginForm(request, data=request.POST)
+
+        if form.is_valid():
+
+            username = request.POST.get('username')
+            password = request.POST.get('password')
+
+            user = authenticate(request, username=username, password=password)
+
+            if user is not None:
+
+                auth.login(request, user)
+
+                return redirect("TicketOn:eventos")
+
+
+    context = {'loginform':form}
+
+    return render(request, 'Inicio/comprador_login.html', context=context)
+
+
+
+
+
+
+#Sesión Organizador
+def registerOrganizador(request):
+    auth.logout(request)
+    form = CreateUserForm()
+
+    if request.method == "POST":
+        form = CreateUserForm(request.POST)
+
+        if form.is_valid():
+            user = form.save()
+            email = user.email
+            Organizador.objects.create(usuario=user,correo=email)
+            return redirect("TicketOn:my_loginO")
+
+    context = {'registerform': form}
+    return render(request, 'Inicio/organizador_register.html', context=context)
+    
+def my_loginOrganizador(request):
+    auth.logout(request)
+    form = LoginForm()
+
+    if request.method == 'POST':
+
+        form = LoginForm(request, data=request.POST)
+
+        if form.is_valid():
+
+            username = request.POST.get('username')
+            password = request.POST.get('password')
+
+            user = authenticate(request, username=username, password=password)
+
+            if user is not None:
+
+                auth.login(request, user)
+
+                return redirect("TicketOn:eventos_en_curso")
+
+
+    context = {'loginform':form}
+
+    return render(request, 'Inicio/organizador_login.html', context=context)
+
+
+
+def user_logout(request):
+
+    auth.logout(request)
+
+    return redirect("/home/")
+
+
+def comprador_required(view_func):
+    @wraps(view_func)
+    def _wrapped_view(request, *args, **kwargs):
+        # Verifica si el usuario actual es un comprador
+        if request.user.is_authenticated and Comprador.objects.filter(usuario=request.user).exists():
+            return view_func(request, *args, **kwargs)
+        else:
+            return redirect("TicketOn:my-login")  # Redirige a la página de inicio de sesión si no es un comprador
+    return _wrapped_view
+
+def Organizador_required(view_func):
+    @wraps(view_func)
+    def _wrapped_view(request, *args, **kwargs):
+        # Verifica si el usuario actual es un comprador
+        if request.user.is_authenticated and Organizador.objects.filter(usuario=request.user).exists():
+            return view_func(request, *args, **kwargs)
+        else:
+            return redirect("TicketOn:my_loginO")  # Redirige a la página de inicio de sesión si no es un comprador
+    return _wrapped_view
 
 
 # Inicio
@@ -40,20 +147,20 @@ def organizador_register(request):
     return render(request, 'Inicio/organizador_register.html')
 
 #Comprador
-@login_required
+@comprador_required
 def eventos(request):
     eventos = Evento.objects.all()
     return render (request,'Comprador/Eventos.html',{'eventos':eventos})
 
-@login_required
+@comprador_required
 def ayuda(request):
     return render (request,'Comprador/Ayuda.html')
 
-@login_required
+@comprador_required
 def carrito(request):
     return render (request,'Comprador/Carrito.html')
 
-@login_required
+@comprador_required
 def detalles_evento(request,nombre_evento,evento_slug):
     evento= Evento.objects.get(slug=evento_slug)
     return render(request,'Comprador/Detalles_Evento.html',{
@@ -63,10 +170,11 @@ def detalles_evento(request,nombre_evento,evento_slug):
 
 
 #Organizador
-
+@Organizador_required
 def Eventos_en_curso(request):
     return render(request, 'Organizador/Eventos_en_curso.html')
 
+@Organizador_required
 def Creacion_de_eventos(request):
     if request.method == 'GET':
         return render(request, 'Organizador/Creacion_de_eventos.html',{
@@ -87,8 +195,10 @@ def Creacion_de_eventos(request):
                 })
         return HttpResponse("Algo salió mal")
 
+@Organizador_required
 def Editar_eventos(request):
     return render(request, 'Organizador/Editar_eventos.html')
 
+@Organizador_required
 def Ventas(request):
     return render(request, 'Organizador/Ventas.html')
