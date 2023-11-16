@@ -129,7 +129,7 @@ def Organizador_required(view_func):
         if request.user.is_authenticated and Organizador.objects.filter(usuario=request.user).exists():
             return view_func(request, *args, **kwargs)
         else:
-            return redirect("TicketOn:my_loginO")  # Redirige a la página de inicio de sesión si no es un comprador
+            return redirect("TicketOn:my_loginO")  # Redirige a la página de inicio de sesión si no es un organizador
     return _wrapped_view
 
 
@@ -179,24 +179,26 @@ def Eventos_en_curso(request):
 
 @Organizador_required
 def Creacion_de_eventos(request):
-    if request.method == 'GET':
-        return render(request, 'Organizador/Creacion_de_eventos.html',{
-            'form': EventoForm()
-        })
-    elif request.method == 'POST':
-        try:
-            form = EventoForm(request.POST)
-            if form.is_valid():
-                new_evento = form.save(commit = False)
-                new_evento.Organizador = request.user
-                new_evento.save()
-                return redirect ('eventos')
-        except ValueError:
-            return render(request, 'Organizador/Creacion_de_eventos.html',{
-                'form': EventoForm(),
-                'error': 'Ingrese los datos necesarios'
-                })
-        return HttpResponse("Algo salió mal")
+    evento_form = EventosForm()
+    if request.method == "POST":
+        evento_form= EventosForm(request.POST,request.FILES)
+
+        if evento_form.is_valid():
+            lugar=evento_form.cleaned_data['lugar']
+            hora=evento_form.cleaned_data['hora']
+            fecha=evento_form.cleaned_data['fecha']
+            nombre=evento_form.cleaned_data['nombre']
+            cupo=evento_form.cleaned_data['cupo']
+            imagen = evento_form.cleaned_data['imagen']
+            descripcion=evento_form.cleaned_data['descripcion']
+            tipo=evento_form.cleaned_data['tipo']
+            precio=evento_form.cleaned_data['precio']
+            organizador = Organizador.objects.get(usuario=request.user)
+            Evento.objects.create(lugar=lugar, hora=hora, fecha=fecha, nombre=nombre,cupo=cupo,imagen=imagen, descripcion=descripcion,tipo=tipo,organizador=organizador, precio=precio )
+            return redirect("TicketOn:eventos_en_curso")
+
+    context = {'Evento_form': evento_form}
+    return render(request, 'Organizador/Creacion_de_eventos.html', context=context)
 
 @Organizador_required
 def Editar_eventos(request):

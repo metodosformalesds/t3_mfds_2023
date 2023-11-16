@@ -25,3 +25,12 @@ class OrganizadorForm(ModelForm):
         model = Organizador
         fields = ['empresa']
 
+class EventosForm(ModelForm):
+    class Meta:
+
+        model = Evento
+        fields = ['lugar','hora','fecha','nombre','cupo','imagen','descripcion','tipo','precio']   
+        widgets = {
+            'imagen': forms.ClearableFileInput(attrs={'multiple': True}),
+        }     
+

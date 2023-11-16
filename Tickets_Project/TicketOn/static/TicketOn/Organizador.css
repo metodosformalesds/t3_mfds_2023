@@ -1,72 +1,72 @@
 body {
-  margin: 0px;
-  box-sizing: border-box;
-  background: #6e870a;
-}
-
-#main-nav_1 {
-  display: flex;
-  padding: 5px 5%;
-  justify-content: space-between;
-  box-shadow: 0px 10px 25px #00000043;
-  background-color: #93c012;
-  height: 70px;
-}
-
-#divlogo {
-  width: 20%;
-  display: flex;
-  justify-content: left;
-}
-
-.main-nav {
-  width: 100%;
-  display: flex;
-  justify-content: space-around;
-  padding: 15px;
-  display: flex;
-  padding-top: 18px;
-}
-
-#opciones {
-  display: flex;
-  justify-content: space-around;
-  width: 50%;
-}
-
-.Contenedor {
-  border: 3px;
-  background-color: #cbb000;
-}
-
-#nombrecontenedor {
-  color: #ffffff;
-  font-size: 20px;
-  text-decoration: none;
-}
-
-.Logoimg {
-  position: absolute;
-  width: 64px;
-  height: 64px;
-  left: 35px;
-  top: 8px;
-}
-
-#NombreTJ {
-  text-decoration: none;
-  padding-top: 0px;
-  width: 137px;
-  flex-shrink: 0;
-  color: #000;
-  text-align: center;
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
+  margin: 0;
+  padding: 0;
+  margin-top: 100px;
+  background-color: #6e870a;
+}
+
+header {
+  justify-content: center;
+  align-items: center;
+  background-color: #93c012;
+  color: 000000;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+  text-decoration: none;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+a {
+  display: block;
+  margin-top: 10px;
+  color: #000000;
+  text-decoration: none;
 }
 
 .margen {
   margin-top: 5%;
+}
+
+#logo {
+  width: 50px;
+  margin-right: 10px;
+}
+
+#brand {
+  font-size: 24px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+nav {
+  margin-left: auto;
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+nav li {
+  margin-right: 250px;
+}
+
+nav a {
+  color: #000000;
+  text-decoration: none;
+  font-size: 20px;
+  font-weight: bold;
+  transition: color 0.3s ease-in-out;
+}
+
+nav a:hover {
+  color: #555555; /* Cambia el color al pasar el ratón por encima */
 }
