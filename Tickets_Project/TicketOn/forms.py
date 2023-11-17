@@ -31,6 +31,6 @@ class EventosForm(ModelForm):
         model = Evento
         fields = ['lugar','hora','fecha','nombre','cupo','imagen','descripcion','tipo','precio']   
         widgets = {
-            'imagen': forms.ClearableFileInput(attrs={'multiple': True}),
+            'imagen': forms.ClearableFileInput(),
         }     
 
