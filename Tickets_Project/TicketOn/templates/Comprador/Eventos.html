@@ -7,6 +7,18 @@
         {% csrf_token %}
         <label for="nombre">Nombre:</label>
         <input id="nombre" name="nombre" type="text" placeholder="{{nombre_busq}}">
+
+        <label for="tipo">Tipo:</label>
+        <input id="tipo" name="tipo" type="text" placeholder="{{tipo_busq}}">
+
+        <label for="lugar">Lugar:</label>
+        <input id="lugar" name="lugar" type="text" placeholder="{{lugar_busq}}">
+
+        <label for="fecha">Fecha:</label>
+        <input id="fecha" name="fecha" type="date" placeholder="{{fecha_busq}}">
+
+        
+
         <button>Buscar</button>
     </form>
 </div>
