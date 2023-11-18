@@ -2,17 +2,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="stylesheet" href="{% static 'TicketOn/Organizador.css'%}" />
 <style>
-  body {
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
-
   #container {
-    margin-top: 400px;
+    margin-top: 100px;
     text-align: center;
   }
 
@@ -81,7 +72,39 @@
   <form method="POST" autocomplete="off" enctype="multipart/form-data">
     <h2>Ingresar datos</h2>
     {% csrf_token %}
-    {{ Evento_form.as_p}}
+    <label for="{{ Evento_form.nombre.id_for_label }}">Nombre:</label>
+    {{ Evento_form.nombre }}
+
+    <label for="{{ Evento_form.descripcion.id_for_label }}">Descripción:</label>
+    {{ Evento_form.descripcion }}
+
+    <label for="{{ Evento_form.lugar.id_for_label }}">Lugar:</label>
+    {{ Evento_form.lugar }}
+
+    <label for="{{ Evento_form.fecha.id_for_label }}">Fecha:</label>
+    {{ Evento_form.fecha }}
+
+    <label for="{{ Evento_form.hora.id_for_label }}">Hora:</label>
+    {{ Evento_form.hora }}
+
+    <label for="{{ Evento_form.tipo.id_for_label }}">Tipo:</label>
+    {{ Evento_form.tipo }}
+
+    <label for="{{ Evento_form.cupo.id_for_label }}">Cupo:</label>
+    {{ Evento_form.cupo }}
+
+    <label for="{{ Evento_form.precio.id_for_label }}">Precio:</label>
+    {{ Evento_form.precio }}
+
+    <label for="{{ Evento_form.imagen.id_for_label }}">Imagen:</label>
+    <input
+      type="file"
+      name="imagen"
+      id="imagen-input"
+      accept="image/*"
+      onchange="mostrarVistaPrevia(this)"
+    />
+    <img id="imagen-previa" style="display: none" />
     <input type="submit" value="Ingresar" />
   </form>
 </div>

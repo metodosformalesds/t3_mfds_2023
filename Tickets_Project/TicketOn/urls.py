@@ -26,9 +26,9 @@ urlpatterns = [
     path('comprador/eventos/<nombre_evento>/<evento_slug>',views.detalles_evento, name="detalles_evento"), #probar ejemplo /comprador/eventos/Evento%20Prueba/1
 
     #Organizador
-    path('organizador/eventos/curso/',views.Eventos_en_curso,name='eventos_en_curso'),
+    path('organizador/eventos/',views.Eventos_en_curso,name='eventos_en_curso'),
     path('organizador/eventos/creacion/',views.Creacion_de_eventos, name='creacion_de_eventos'),
-    path('organizador/editar/eventos/',views.Editar_eventos, name='editar_eventos'),
+    path('organizador/eventos/editar/<slug:evento_slug>/', views.editar_evento, name='editar_evento'),
     path('organizador/ventas/',views.Ventas, name='ventas'),
 
 ]

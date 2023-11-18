@@ -6,21 +6,8 @@
   <link rel="stylesheet" href="{% static 'TicketOn/Inicio.css'%}" />
   <title>TicketJaeger - Inicio</title>
   <style>
-    body {
-      margin: 0;
-      padding: 0;
-      text-align: center;
-    }
-    body {
-      margin: 0;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
     #logoinicio {
-      margin-top: 60px;
+      margin-top: 30px;
       width: 400px;
     }
 
@@ -46,10 +33,17 @@
       cursor: pointer;
       margin-right: 10px;
     }
+    #inicio {
+      margin: 0;
+      padding: 0;
+      text-align: center;
+      justify-content: center;
+      align-items: center;
+    }
   </style>
 </head>
 <body>
-  <div id="header">
+  <div id="inicio">
     <img id="logoinicio" src={%static 'TicketOn/image/Icon.png '%} alt="Logo de
     TicketJaeger" />
     <div id="title">TicketJaeger</div>
