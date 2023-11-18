@@ -1,3 +1,4 @@
+from autoslug import AutoSlugField
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.text import slugify
@@ -34,15 +35,13 @@ class Evento(models.Model):
     descripcion=models.TextField(max_length=1000)
     tipo= models.CharField(max_length=20)
     organizador=models.ForeignKey(Organizador,on_delete=models.CASCADE)
-    slug = models.SlugField(unique=True, blank=True)
+    slug = AutoSlugField(populate_from='nombre', unique=True, always_update=True)
     precio=models.FloatField(null=True)
 
     def __str__(self):
         return f"{self.nombre}"
     
     def save(self,*args,**kwargs):
-        super().save(*args,**kwargs)
-        self.slug = self.id
         super().save(*args,**kwargs)
     
 
