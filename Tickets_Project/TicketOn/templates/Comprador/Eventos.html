@@ -1,5 +1,32 @@
 {% extends 'Conex/Conex_comprador.html' %} {% block content %} {%load static%}
-<link rel="stylesheet" href="{% static 'TicketOn/Comprador.css'%}" />
-<h1>EVENTOS</h1>
+<link rel="stylesheet" href="{% static 'TicketOn/Eventos.css'%}" />
+
+
+<div id="Div-Busqueda">
+    <form method="POST">
+        {% csrf_token %}
+        <label for="nombre">Nombre:</label>
+        <input id="nombre" name="nombre" type="text" placeholder="{{nombre_busq}}">
+        <button>Buscar</button>
+    </form>
+</div>
+
+<main id="Espacio-eventos">
+    {%for evento in eventos%}
+        <div class="Tarjeta-evento">
+            <img src="{{evento.imagen.url}}" class="evento-img"></img>
+            <div class="Evento-info">
+                <h2>{{evento.nombre}}</h2>
+                <h3>{{evento.fecha}}</h3>
+                <form action="{{evento.nombre}}/{{evento.slug}}">
+                    <input type="submit" value="Ver evento" />
+                </form>
+            </div>  
+        </div>
+    {%endfor%}
+</div>
+
+<!--<script type="text/javascript" src="{% static 'TicketOn/Eventos.js'%}" ></script>-->
+
 
 {% endblock %}

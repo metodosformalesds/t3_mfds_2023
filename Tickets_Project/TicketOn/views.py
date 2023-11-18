@@ -152,8 +152,21 @@ def organizador_register(request):
 #Comprador
 @comprador_required
 def eventos(request):
-    eventos = Evento.objects.all()
-    return render (request,'Comprador/Eventos.html',{'eventos':eventos})
+    if request.method =="GET":
+        eventos = Evento.objects.all()
+        return render (request,'Comprador/Eventos.html',{
+            'eventos':eventos
+        })
+    else:
+        nombre_busq = request.POST["nombre"]
+        eventos = Evento.objects.filter(nombre__contains = nombre_busq)
+        return render (request,'Comprador/Eventos.html',{
+            'eventos':eventos,
+            'nombre_busq': nombre_busq
+        })
+    
+    
+    
 
 @comprador_required
 def ayuda(request):

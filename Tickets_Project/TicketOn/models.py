@@ -31,7 +31,7 @@ class Evento(models.Model):
     fecha=models.DateField()
     nombre=models.CharField(max_length=100)
     cupo=models.IntegerField()
-    imagen=models.ImageField(upload_to="eventos",blank=True)
+    imagen=models.ImageField(upload_to="eventos",blank=True,null=True)
     descripcion=models.TextField(max_length=1000)
     tipo= models.CharField(max_length=20)
     organizador=models.ForeignKey(Organizador,on_delete=models.CASCADE)
