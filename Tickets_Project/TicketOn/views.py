@@ -159,10 +159,22 @@ def eventos(request):
         })
     else:
         nombre_busq = request.POST["nombre"]
-        eventos = Evento.objects.filter(nombre__contains = nombre_busq)
+        tipo_busq = request.POST["tipo"]
+        lugar_busq = request.POST["lugar"]
+        fecha_busq = request.POST["fecha"]
+        
+        if not fecha_busq:
+            eventos = Evento.objects.filter(nombre__contains = nombre_busq,tipo__contains = tipo_busq, lugar__contains = lugar_busq)
+            
+        else:
+            eventos = Evento.objects.filter(nombre__contains = nombre_busq,tipo__contains = tipo_busq, lugar__contains = lugar_busq,fecha = fecha_busq)
+        
         return render (request,'Comprador/Eventos.html',{
             'eventos':eventos,
-            'nombre_busq': nombre_busq
+            'nombre_busq': nombre_busq,
+            'tipo_busq': tipo_busq,
+            'fecha_busq': fecha_busq,
+            'lugar_busq':lugar_busq
         })
     
     

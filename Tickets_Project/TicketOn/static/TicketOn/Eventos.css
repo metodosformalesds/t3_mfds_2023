@@ -135,9 +135,18 @@ body {
     font-weight: bold;
   }
 
+  #Div-Busqueda{
+    display: flex;
+    justify-content: center;
+    margin-top: 120px;
+    margin-bottom: 20px;
+    column-gap: 20px;
+  }
+
   #Div-Busqueda form{
     display: flex;
-    justify-content: space-between;
+    justify-content:center;
+    column-gap: 5px;
   }
 
   /*.Evento-info{
