@@ -1,7 +1,7 @@
 from typing import Self
 from functools import wraps
 from django.http import HttpResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import get_object_or_404, render, redirect
 from .forms import *
 from .models import *
 from django.contrib.auth.models import auth
@@ -226,8 +226,22 @@ def Creacion_de_eventos(request):
     return render(request, 'Organizador/Creacion_de_eventos.html', context=context)
 
 @Organizador_required
-def Editar_eventos(request):
-    return render(request, 'Organizador/Editar_eventos.html')
+def editar_evento(request, evento_slug):
+    evento = get_object_or_404(Evento, slug=evento_slug)
+
+    # Verificar si el usuario actual es el organizador del evento
+    if request.user != evento.organizador.usuario:
+        return redirect("TicketOn:eventos_en_curso")
+
+    if request.method == 'POST':
+        evento_form = EventosForm(request.POST, request.FILES, instance=evento)
+        if evento_form.is_valid():
+            evento_form.save()
+            return redirect("TicketOn:eventos_en_curso")
+    else:
+        evento_form = EventosForm(instance=evento)
+
+    return render(request, 'Organizador/Editar_eventos.html', {'Evento_form': evento_form, 'evento': evento})
 
 @Organizador_required
 def Ventas(request):

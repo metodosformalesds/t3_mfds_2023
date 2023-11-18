@@ -29,8 +29,9 @@ class EventosForm(ModelForm):
     class Meta:
 
         model = Evento
-        fields = ['lugar','hora','fecha','nombre','cupo','imagen','descripcion','tipo','precio']   
+        fields = ['nombre', 'descripcion', 'lugar', 'fecha', 'hora', 'tipo', 'cupo', 'precio', 'imagen'] 
         widgets = {
             'imagen': forms.ClearableFileInput(),
         }     
+        imagen_actual = forms.ImageField(required=False, label='Imagen Actual', disabled=True)
 

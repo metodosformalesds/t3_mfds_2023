@@ -1,5 +1,150 @@
 {% extends 'Conex/Conex_organizador.html' %} {% block content %} {%load static%}
 <link rel="stylesheet" href="{% static 'TicketOn/Organizador.css'%}" />
-<h1>Editar evento</h1>
+<style>
+  #container {
+    margin-top: 100px;
+    text-align: center;
+  }
+
+  form {
+    background-color: #fff;
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+    display: inline-block;
+    text-align: left;
+  }
+
+  h1 {
+    color: #fff;
+  }
+
+  h2 {
+    margin-top: 10px;
+    color: #333;
+    justify-content: center;
+    text-align: center;
+  }
+
+  label {
+    margin-top: 3px;
+    width: 100%;
+    font-weight: bold;
+    display: block;
+  }
+
+  input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+  }
+
+  input[type="submit"] {
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+
+  input[type="submit"]:hover {
+    background-color: #45a049;
+  }
+
+  a {
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+    color: #000000;
+    text-decoration: none;
+  }
+  #imagen-previa {
+    max-width: 100%;
+    height: auto;
+    margin-top: 10px;
+  }
+
+  img {
+    display: block;
+    margin-top: 15px;
+    width: 400px;
+    height: auto;
+  }
+</style>
+
+<div id="container">
+  <h1>Editar evento</h1>
+  <form method="POST" autocomplete="off" enctype="multipart/form-data">
+    {% csrf_token %}
+    <h2>{{ evento.nombre }}</h2>
+    <div>
+      {% if evento.imagen %}
+      <img src="{{ evento.imagen.url }}" alt="{{ evento.nombre }}" />
+      {% endif %}
+    </div>
+
+    <label for="{{ Evento_form.nombre.id_for_label }}">Nombre:</label>
+    {{ Evento_form.nombre }}
+
+    <label for="{{ Evento_form.descripcion.id_for_label }}">Descripción:</label>
+    {{ Evento_form.descripcion }}
+
+    <label for="{{ Evento_form.lugar.id_for_label }}">Lugar:</label>
+    {{ Evento_form.lugar }}
+
+    <label for="{{ Evento_form.fecha.id_for_label }}">Fecha:</label>
+    {{ Evento_form.fecha }}
+
+    <label for="{{ Evento_form.hora.id_for_label }}">Hora:</label>
+    {{ Evento_form.hora }}
+
+    <label for="{{ Evento_form.tipo.id_for_label }}">Tipo:</label>
+    {{ Evento_form.tipo }}
+
+    <label for="{{ Evento_form.cupo.id_for_label }}">Cupo:</label>
+    {{ Evento_form.cupo }}
+
+    <label for="{{ Evento_form.precio.id_for_label }}">Precio:</label>
+    {{ Evento_form.precio }}
+
+    <label for="{{ Evento_form.imagen.id_for_label }}">Imagen:</label>
+    <input
+      type="file"
+      name="imagen"
+      id="imagen-input"
+      accept="image/*"
+      onchange="mostrarVistaPrevia(this)"
+    />
+    <img id="imagen-previa" style="display: none" />
+    <input type="submit" value="Guardar Cambios" />
+  </form>
+</div>
+
+<script>
+  function mostrarVistaPrevia(input) {
+    var vistaPrevia = document.getElementById("imagen-previa");
+    var archivo = input.files[0];
+
+    if (archivo) {
+      var lector = new FileReader();
+
+      lector.onload = function (e) {
+        vistaPrevia.src = e.target.result;
+        vistaPrevia.style.display = "block";
+      };
+
+      lector.readAsDataURL(archivo);
+    } else {
+      vistaPrevia.style.display = "none";
+    }
+  }
+</script>
 
 {% endblock %}
