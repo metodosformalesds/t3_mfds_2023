@@ -26,6 +26,7 @@ class OrganizadorForm(ModelForm):
         fields = ['empresa']
 
 class EventosForm(ModelForm):
+    imagen_actual = forms.ImageField(required=False, label='Imagen Actual', disabled=True)
     class Meta:
 
         model = Evento
@@ -33,5 +34,5 @@ class EventosForm(ModelForm):
         widgets = {
             'imagen': forms.ClearableFileInput(),
         }     
-        imagen_actual = forms.ImageField(required=False, label='Imagen Actual', disabled=True)
+        
 

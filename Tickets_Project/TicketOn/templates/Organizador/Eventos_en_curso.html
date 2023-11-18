@@ -2,4 +2,24 @@
 <link rel="stylesheet" href="{% static 'TicketOn/Organizador.css'%}" />
 <h1>Eventos en Curso</h1>
 
+{% if eventos_en_curso %}
+    <ul>
+      {% for evento in eventos_en_curso %}
+        <li>
+          <strong>{{ evento.nombre }}</strong><br>
+          Lugar: {{ evento.lugar }}<br>
+          Fecha: {{ evento.fecha }}<br>
+          Hora: {{ evento.hora }}<br>
+          Descripción: {{ evento.descripcion }}<br>
+          Precio: {{ evento.precio }}<br>
+          {% if evento.imagen %}
+            <img src="{{ evento.imagen.url }}" alt="{{ evento.nombre }} imagen">
+          {% endif %}
+
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No hay eventos en curso actualmente.</p>
+  {% endif %}
 {% endblock %}

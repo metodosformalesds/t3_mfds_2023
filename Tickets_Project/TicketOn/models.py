@@ -37,6 +37,7 @@ class Evento(models.Model):
     organizador=models.ForeignKey(Organizador,on_delete=models.CASCADE)
     slug = AutoSlugField(populate_from='nombre', unique=True, always_update=True)
     precio=models.FloatField(null=True)
+    en_curso = models.BooleanField(default=True)
 
     def __str__(self):
         return f"{self.nombre}"

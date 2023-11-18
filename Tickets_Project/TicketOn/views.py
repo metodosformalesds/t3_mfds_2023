@@ -11,6 +11,7 @@ from allauth.account.decorators import login_required
 import random
 import string
 from copy import deepcopy
+from datetime import date
 
 #Sesión comprador
 def register(request):
@@ -203,7 +204,8 @@ def detalles_evento(request,nombre_evento,evento_slug):
 #Organizador
 @Organizador_required
 def Eventos_en_curso(request):
-    return render(request, 'Organizador/Eventos_en_curso.html')
+    eventos_en_curso = Evento.objects.filter(en_curso=True)
+    return render(request, 'Organizador/Eventos_en_curso.html', {'eventos_en_curso': eventos_en_curso})
 
 @Organizador_required
 def Creacion_de_eventos(request):
