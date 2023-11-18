@@ -46,12 +46,13 @@ class Evento(models.Model):
     
 
 class Ticket(models.Model):
-    precio=models.FloatField()
-    estado=models.BooleanField(default=False)
-    codigo=models.CharField(max_length=30)
-    fecha_compra=models.DateField()
-    evento=models.ForeignKey(Evento,on_delete=models.CASCADE)
-    comprador=models.ForeignKey(Comprador,on_delete=models.CASCADE)
+    precio = models.FloatField()
+    estado = models.BooleanField(default=False)
+    codigo = models.CharField(max_length=30, unique=True)
+    fecha_compra = models.DateField(null=True, blank=True)
+    evento = models.ForeignKey(Evento, on_delete=models.CASCADE)
+    comprador = models.ForeignKey(Comprador, null=True, blank=True, on_delete=models.SET_NULL)
+
     def __str__(self):
         return f"{self.codigo}"
 

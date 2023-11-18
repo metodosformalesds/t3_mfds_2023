@@ -65,6 +65,13 @@
     color: #000000;
     text-decoration: none;
   }
+
+  img {
+    display: block;
+    margin-top: 15px;
+    width: 400px;
+    height: auto;
+  }
 </style>
 
 <div id="container">
@@ -108,5 +115,25 @@
     <input type="submit" value="Ingresar" />
   </form>
 </div>
+
+<script>
+  function mostrarVistaPrevia(input) {
+    var vistaPrevia = document.getElementById("imagen-previa");
+    var archivo = input.files[0];
+
+    if (archivo) {
+      var lector = new FileReader();
+
+      lector.onload = function (e) {
+        vistaPrevia.src = e.target.result;
+        vistaPrevia.style.display = "block";
+      };
+
+      lector.readAsDataURL(archivo);
+    } else {
+      vistaPrevia.style.display = "none";
+    }
+  }
+</script>
 
 {% endblock %}

@@ -8,6 +8,9 @@ from django.contrib.auth.models import auth
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import authenticate, login, logout
 from allauth.account.decorators import login_required
+import random
+import string
+from copy import deepcopy
 
 #Sesión comprador
 def register(request):
@@ -193,31 +196,33 @@ def Eventos_en_curso(request):
 @Organizador_required
 def Creacion_de_eventos(request):
     evento_form = EventosForm()
+
     if request.method == "POST":
-        evento_form= EventosForm(request.POST,request.FILES)
+        evento_form = EventosForm(request.POST, request.FILES)
 
         if evento_form.is_valid():
-            lugar=evento_form.cleaned_data['lugar']
-            hora=evento_form.cleaned_data['hora']
-            fecha=evento_form.cleaned_data['fecha']
-            nombre=evento_form.cleaned_data['nombre']
-            cupo=evento_form.cleaned_data['cupo']
-            imagen = evento_form.cleaned_data['imagen']
-            descripcion=evento_form.cleaned_data['descripcion']
-            tipo=evento_form.cleaned_data['tipo']
-            precio=evento_form.cleaned_data['precio']
             organizador = Organizador.objects.get(usuario=request.user)
-            Evento.objects.create(lugar=lugar, hora=hora, fecha=fecha, nombre=nombre,cupo=cupo,imagen=imagen, descripcion=descripcion,tipo=tipo,organizador=organizador, precio=precio )
+            
+            nuevo_evento = evento_form.save(commit=False)
+            
+            nuevo_evento.organizador = organizador
+
+            nuevo_evento.save()
+
             return redirect("TicketOn:eventos_en_curso")
 
     context = {'Evento_form': evento_form}
     return render(request, 'Organizador/Creacion_de_eventos.html', context=context)
 
 @Organizador_required
+def Ventas(request):
+    return render(request, 'Organizador/Ventas.html')
+
+
+@Organizador_required
 def editar_evento(request, evento_slug):
     evento = get_object_or_404(Evento, slug=evento_slug)
 
-    # Verificar si el usuario actual es el organizador del evento
     if request.user != evento.organizador.usuario:
         return redirect("TicketOn:eventos_en_curso")
 
@@ -225,12 +230,32 @@ def editar_evento(request, evento_slug):
         evento_form = EventosForm(request.POST, request.FILES, instance=evento)
         if evento_form.is_valid():
             evento_form.save()
+
             return redirect("TicketOn:eventos_en_curso")
     else:
         evento_form = EventosForm(instance=evento)
 
     return render(request, 'Organizador/Editar_eventos.html', {'Evento_form': evento_form, 'evento': evento})
 
-@Organizador_required
-def Ventas(request):
-    return render(request, 'Organizador/Ventas.html')
+
+
+
+
+#Sistema logico de tickets
+def generar_codigo():
+    return ''.join(random.choices(string.ascii_uppercase + string.digits, k=10))
+
+def generar_tickets_para_evento(evento,request):
+    codigo_ticket = generar_codigo()
+    while Ticket.objects.filter(codigo=codigo_ticket).exists():
+        codigo_ticket = generar_codigo()
+
+    comprador_actual = Comprador.objects.get(usuario=request.user)
+    Ticket.objects.create(
+        precio=evento.precio,
+        estado=False,  
+        codigo=codigo_ticket,
+        fecha_compra=None,  
+        evento=evento,
+        comprador=comprador_actual
+    )
