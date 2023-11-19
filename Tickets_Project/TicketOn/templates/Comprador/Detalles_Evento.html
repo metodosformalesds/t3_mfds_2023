@@ -52,13 +52,11 @@
                     </div>
                 </div>
                 <div id="bl3_2">
-                    <button>
-                        Agregar al carrito
-                    </button>
-        
-                    <form>
+                    <form method="POST" action="{% url 'TicketOn:agregar_al_carrito' evento.slug %}">
+                        {% csrf_token %}
                         <label for="cant_tickets">Cantidad de boletos:</label>
                         <input type="number" id="cant_tickets" name="cant_tickets" min="1">
+                        <input type="submit" value="Agregar al carrito">
                     </form>
                 </div>
             </div>

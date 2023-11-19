@@ -4,6 +4,8 @@ from . import views
 from django.urls import path,include
 from . import views
 from .views import eliminar_evento
+from .views import agregar_al_carrito
+from .views import quitar_del_carrito
 
 app_name = "TicketOn"
 urlpatterns = [
@@ -25,6 +27,11 @@ urlpatterns = [
     path('comprador/ayuda/',views.ayuda, name = 'ayuda'),
     path('comprador/carrito/',views.carrito, name='carrito'),
     path('comprador/eventos/<nombre_evento>/<evento_slug>',views.detalles_evento, name="detalles_evento"), #probar ejemplo /comprador/eventos/Evento%20Prueba/1
+
+    #sistema de pagos
+    path('evento/agregar_al_carrito/<slug:evento_slug>/', agregar_al_carrito, name='agregar_al_carrito'),
+    path('comprador/carrito/eliminar/<int:ticket_id>/', quitar_del_carrito, name='eliminar_ticket_carrito'),
+
 
     #Organizador
     path('organizador/eventos/',views.Eventos_en_curso,name='eventos_en_curso'),

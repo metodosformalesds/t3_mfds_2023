@@ -12,6 +12,7 @@ import random
 import string
 from copy import deepcopy
 from datetime import date
+from django.contrib import messages
 
 #Sesión comprador
 def register(request):
@@ -190,7 +191,14 @@ def ayuda(request):
 
 @comprador_required
 def carrito(request):
-    return render (request,'Comprador/Carrito.html')
+    # Obtener el carrito del comprador actual
+    comprador_actual = Comprador.objects.get(usuario=request.user)
+    carrito, creado = Carrito.objects.get_or_create(comprador=comprador_actual)
+
+    # Obtener todos los tickets en el carrito
+    tickets_en_carrito = carrito.tickets.all()
+
+    return render(request, 'Comprador/Carrito.html', {'tickets_en_carrito': tickets_en_carrito})
 
 @comprador_required
 def detalles_evento(request,nombre_evento,evento_slug):
@@ -268,17 +276,77 @@ def eliminar_evento(request, evento_slug):
 def generar_codigo():
     return ''.join(random.choices(string.ascii_uppercase + string.digits, k=10))
 
-def generar_tickets_para_evento(evento,request):
-    codigo_ticket = generar_codigo()
-    while Ticket.objects.filter(codigo=codigo_ticket).exists():
-        codigo_ticket = generar_codigo()
+def generar_tickets_para_evento(evento, request, cantidad):
+    try:
+        cantidad = int(cantidad)
+    except ValueError:
+        raise ValueError('La cantidad de boletos debe ser un número entero válido.')
+
+    if cantidad <= 0:
+        raise ValueError('La cantidad de boletos debe ser al menos 1.')
 
     comprador_actual = Comprador.objects.get(usuario=request.user)
-    Ticket.objects.create(
-        precio=evento.precio,
-        estado=False,  
-        codigo=codigo_ticket,
-        fecha_compra=None,  
-        evento=evento,
-        comprador=comprador_actual
-    )
+
+    for _ in range(cantidad):
+        codigo_ticket = generar_codigo()
+
+        while Ticket.objects.filter(codigo=codigo_ticket).exists():
+            codigo_ticket = generar_codigo()
+
+        Ticket.objects.create(
+            precio=evento.precio,
+            estado=False,
+            codigo=codigo_ticket,
+            fecha_compra=None,
+            evento=evento,
+            comprador=comprador_actual
+        )
+
+#Sistema de pagos
+def agregar_al_carrito(request, evento_slug):
+    evento = get_object_or_404(Evento, slug=evento_slug)
+
+    if request.method == 'POST':
+        cantidad = request.POST.get('cant_tickets', 1)
+
+        try:
+            cantidad = int(cantidad)
+            comprador_actual = Comprador.objects.get(usuario=request.user)
+
+            carrito, creado = Carrito.objects.get_or_create(comprador=comprador_actual)
+
+            for _ in range(cantidad):
+                codigo_ticket = generar_codigo()
+
+                while Ticket.objects.filter(codigo=codigo_ticket).exists():
+                    codigo_ticket = generar_codigo()
+
+                nuevo_ticket = Ticket.objects.create(
+                    precio=evento.precio,
+                    estado=False,
+                    codigo=codigo_ticket,
+                    fecha_compra=None,
+                    evento=evento,
+                    comprador=comprador_actual
+                )
+
+                carrito.tickets.add(nuevo_ticket)
+
+            messages.success(request, f'Boleto(s) agregado(s) al carrito exitosamente.')
+        except ValueError as e:
+            messages.error(request, str(e))
+
+    return redirect('TicketOn:carrito') 
+
+def quitar_del_carrito(request, ticket_id):
+    ticket = get_object_or_404(Ticket, id=ticket_id)
+
+    if request.method == 'POST':
+        comprador_actual = get_object_or_404(Comprador, usuario=request.user)
+        carrito = get_object_or_404(Carrito, comprador=comprador_actual)
+
+        carrito.tickets.remove(ticket)
+
+        messages.success(request, 'Boleto quitado del carrito exitosamente.')
+
+    return redirect('TicketOn:carrito')
