@@ -30,7 +30,7 @@ urlpatterns = [
 
     #sistema de pagos
     path('evento/agregar_al_carrito/<slug:evento_slug>/', agregar_al_carrito, name='agregar_al_carrito'),
-    path('comprador/carrito/eliminar/<int:ticket_id>/', quitar_del_carrito, name='eliminar_ticket_carrito'),
+    path('quitar_del_carrito/<int:ticket_id>/', quitar_del_carrito, name='quitar_del_carrito'),
 
 
     #Organizador
