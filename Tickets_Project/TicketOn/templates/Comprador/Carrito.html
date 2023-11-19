@@ -1,15 +1,37 @@
 {% extends 'Conex/Conex_comprador.html' %} {% block content %} {% load static %}
 
-<link rel="stylesheet" href="{% static 'TicketOn/Comprador.css' %}" />
+<link rel="stylesheet" href="{% static 'TicketOn/Carrito.css' %}" />
 
-<h2>Carrito de Compras</h2>
+<h2>Tu carrito</h2>
 
-{% if tickets_en_carrito %}
-<ul>
-  {% for ticket in tickets_en_carrito %}
-  <li>{{ ticket.evento.nombre }} - Precio: ${{ ticket.precio }}</li>
-  {% endfor %}
-</ul>
-{% else %}
-<p>El carrito está vacío.</p>
-{% endif %} {% endblock %}
+<div id="Carrito">
+    {% if tickets_en_carrito %}
+        {% for ticket in tickets_en_carrito %}
+        <div id="tarjeta_ticket">
+            <img src="{{ ticket.evento.imagen.url }}" class="evento-img"></img>
+            <div id="info_ticket">
+                <div id="linea1"><h2>{{ ticket.evento.nombre }}</h2><h3>- Precio: ${{ ticket.precio }}</h3></div>
+                <div class="linea"><h3>{{ ticket.evento.fecha }}-{{ ticket.evento.hora}}</h3></div>
+                <div class="linea"><h3>{{ ticket.evento.lugar }}</h3></div>
+            </div>
+            <div id="Botones">
+                <form action="{% url 'TicketOn:detalles_evento' ticket.evento.nombre ticket.evento.slug%}">
+                    <input type="submit" value="Ver evento" />
+                </form>
+                <form action="{{ticket.evento.nombre}}/{{ticket.evento.slug}}" >
+                    <input type="submit" value="Quitar" />
+                </form>
+            </div>
+        </div>
+        {% endfor %}
+    {% else %}
+        <div id="tarjeta_ticket">
+            <div id="info_ticket">
+                <h2>El carrito está vacío.</h2>
+            </div>
+        </div>
+        
+    {% endif %} {% endblock %}
+</div>
+
+

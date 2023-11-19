@@ -1,0 +1,158 @@
+/*---------------------------------Menu de navegacion---------------------------------*/
+body {
+    margin: 0px;
+    box-sizing: border-box;
+    background: #35b5de;
+  }
+  .margen {
+    margin-top: 5%;
+  }
+  
+  #main-nav_1 {
+    display: flex;
+    padding: 5px 5%;
+    justify-content: space-between;
+    box-shadow: 0px 10px 25px #00000043;
+    background-color: #357ede;
+    height: 70px;
+    top: 0;
+    position: fixed;
+    width: 100%;
+  }
+  
+  #divlogo {
+    width: 20%;
+    display: flex;
+    justify-content: left;
+  }
+  
+  .main-nav {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    padding: 15px;
+    display: flex;
+    padding-top: 18px;
+    padding-right: 100px;
+  }
+  
+  #main-nav_1 a {
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: bold;
+    color: #000;
+    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  }
+  
+  #opciones {
+    display: flex;
+    justify-content: space-around;
+    width: 50%;
+  }
+  
+  .Contenedor {
+    border: 3px;
+    background-color: #cbb000;
+  }
+  
+  #nombrecontenedor {
+    color: #ffffff;
+    font-size: 20px;
+    text-decoration: none;
+  }
+  
+  .Logoimg {
+    position: absolute;
+    width: 64px;
+    height: 64px;
+    left: 35px;
+    top: 8px;
+  }
+  
+  #NombreTJ {
+    text-decoration: none;
+    padding-top: 0px;
+    width: 137px;
+    flex-shrink: 0;
+    color: #000;
+    text-align: center;
+    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+
+/*-----------------------------------Cuerpo-----------------------------------*/
+
+#Carrito{
+    padding: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap:20px 20px;
+    margin: auto;
+    width: 80%;
+    height: fit-content;
+    background-color: #BCDBF9;
+}
+
+#tarjeta_ticket{
+    width: 90%;
+    display: flex;
+    background-color: #F0EDED;
+}
+
+#tarjeta_ticket img{
+    width: 300px;
+    height: 200px;
+    margin: 10px;
+    border: solid;
+}
+
+#info_ticket{
+    margin: 10px;
+    width: 50%;
+    background-color: #D9D9D9;
+    padding-left:10px
+}
+
+#Botones{
+    width: 20%;
+}
+
+#Botones form{
+    display: flex;
+    justify-content: center;
+}
+
+#Botones input{
+    margin: 20px;
+    width: 90%;
+    height: 50px;
+    background-color: #d33a3a;
+    color: white;
+    border-radius: 20px;
+    transition-duration: 0.3s;
+    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+#linea1{
+    padding: 0%;
+    display: flex;
+    justify-content: start;
+    column-gap: 80px;
+    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.linea{
+    display: flex;
+    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+}
