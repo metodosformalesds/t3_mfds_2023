@@ -1,5 +1,15 @@
-{% extends 'Conex/Conex_comprador.html' %} {% block content %} {%load static%}
-<link rel="stylesheet" href="{% static 'TicketOn/Comprador.css'%}" />
-<h1>CARRITO</h1>
+{% extends 'Conex/Conex_comprador.html' %} {% block content %} {% load static %}
 
-{% endblock %}
+<link rel="stylesheet" href="{% static 'TicketOn/Comprador.css' %}" />
+
+<h2>Carrito de Compras</h2>
+
+{% if tickets_en_carrito %}
+<ul>
+  {% for ticket in tickets_en_carrito %}
+  <li>{{ ticket.evento.nombre }} - Precio: ${{ ticket.precio }}</li>
+  {% endfor %}
+</ul>
+{% else %}
+<p>El carrito está vacío.</p>
+{% endif %} {% endblock %}

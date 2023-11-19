@@ -3,6 +3,9 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils.text import slugify
 
+
+
+
 class Comprador(models.Model):
     usuario=models.OneToOneField(User, on_delete=models.CASCADE)
     correo=models.CharField(max_length=30,blank=True)
@@ -66,4 +69,9 @@ class Transferencia(models.Model):
     comprador=models.ForeignKey(Comprador,on_delete=models.CASCADE)
 
     
+class Carrito(models.Model):
+    comprador=models.ForeignKey(Comprador,on_delete=models.CASCADE)
+    tickets = models.ManyToManyField(Ticket, related_name='tickets_en_carrito')
 
+    def __str__(self):
+        return f"Carrito de {self.comprador}"
