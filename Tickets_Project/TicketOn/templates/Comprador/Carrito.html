@@ -1,15 +1,36 @@
 {% extends 'Conex/Conex_comprador.html' %} {% block content %} {% load static %}
-
 <link rel="stylesheet" href="{% static 'TicketOn/Comprador.css' %}" />
 
-<h2>Carrito de Compras</h2>
+<style>
+  .quitarticket {
+    background-color: #ff0000;
+    color: #fff;
+    font-size: 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 200px;
+    box-sizing: border-box;
+  }
+</style>
+
+<h1>Carrito</h1>
 
 {% if tickets_en_carrito %}
 <ul>
   {% for ticket in tickets_en_carrito %}
-  <li>{{ ticket.evento.nombre }} - Precio: ${{ ticket.precio }}</li>
+  <a>
+    Nombre: {{ ticket.evento.nombre }} - Precio: ${{ ticket.precio }} - ID:
+    {{ticket.codigo}}
+  </a>
+  <form
+    method="post"
+    action="{% url 'TicketOn:quitar_del_carrito' ticket.id %}"
+  >
+    {% csrf_token %}
+    <button class="quitarticket" type="submit">Quitar del carrito</button>
+  </form>
   {% endfor %}
 </ul>
 {% else %}
-<p>El carrito está vacío.</p>
+<a>El carrito está vacío.</a>
 {% endif %} {% endblock %}
