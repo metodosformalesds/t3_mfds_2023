@@ -84,6 +84,13 @@ body {
   }
 
 /*-----------------------------------Cuerpo-----------------------------------*/
+h1{
+    font-size: 80px;
+    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+    margin:30px;
+    margin-top: 130px;
+    color:white;
+}
 
 #Carrito{
     padding: 30px;
@@ -108,13 +115,15 @@ body {
     height: 200px;
     margin: 10px;
     border: solid;
+    border-radius: 20px;
 }
 
 #info_ticket{
     margin: 10px;
     width: 50%;
     background-color: #D9D9D9;
-    padding-left:10px
+    padding-left:10px;
+    border-radius: 20px ;
 }
 
 #Botones{
@@ -140,7 +149,22 @@ body {
     font-size: 20px;
 }
 
+#Botones button{
+    margin: 20px;
+    width: 90%;
+    height: 50px;
+    background-color: #d33a3a;
+    color: white;
+    border-radius: 20px;
+    transition-duration: 0.3s;
+    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+}
+
 #linea1{
+    width: 90%;
     padding: 0%;
     display: flex;
     justify-content: start;
@@ -151,8 +175,65 @@ body {
 }
 
 .linea{
+    width: 90%;
     display: flex;
     font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
     font-weight: bold;
     font-size: 20px;
+}
+
+#Div-total{
+    margin: 0px;
+    background-color: #193C69;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+/*-----------------------------------Total-----------------------------------*/
+#Div-total input{
+    margin: 20px;
+    width: 90%;
+    height: 50px;
+    background-color: #d33a3a;
+    color: white;
+    border-radius: 20px;
+    transition-duration: 0.3s;
+    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+#GB_Botones{
+    width: 50%;
+}
+
+#Div-montofinal{
+    width: 50%;
+}
+
+#Div-total button{
+    margin: 20px;
+    width: 90%;
+    height: 50px;
+    background-color: #d33a3a;
+    color: white;
+    border-radius: 20px;
+    transition-duration: 0.3s;
+    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+#Div-montofinal h2{
+    width: 90%;
+    padding: 0%;
+    display: flex;
+    justify-content: start;
+    column-gap: 80px;
+    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+    font-weight: bold;
+    color: white;
 }

@@ -2,7 +2,7 @@
 
 <link rel="stylesheet" href="{% static 'TicketOn/Carrito.css' %}" />
 
-<h2>Tu carrito</h2>
+<h1>Tu carrito</h1>
 
 <div id="Carrito">
     {% if tickets_en_carrito %}
@@ -10,7 +10,7 @@
         <div id="tarjeta_ticket">
             <img src="{{ ticket.evento.imagen.url }}" class="evento-img"></img>
             <div id="info_ticket">
-                <div id="linea1"><h2>{{ ticket.evento.nombre }}</h2><h3>- Precio: ${{ ticket.precio }}</h3></div>
+                <div id="linea1"><h2>{{ ticket.evento.nombre }}</h2><h3>- ${{ ticket.precio }}</h3></div>
                 <div class="linea"><h3>{{ ticket.evento.fecha }}-{{ ticket.evento.hora}}</h3></div>
                 <div class="linea"><h3>{{ ticket.evento.lugar }}</h3></div>
             </div>
@@ -18,12 +18,14 @@
                 <form action="{% url 'TicketOn:detalles_evento' ticket.evento.nombre ticket.evento.slug%}">
                     <input type="submit" value="Ver evento" />
                 </form>
-                <form action="{{ticket.evento.nombre}}/{{ticket.evento.slug}}" >
-                    <input type="submit" value="Quitar" />
+                <form method="POST" action="{% url 'TicketOn:quitar_del_carrito' ticket.id %}" >
+                    {% csrf_token %}
+                    <button type="submit">Quitar del carrito</button>
                 </form>
             </div>
         </div>
         {% endfor %}
+
     {% else %}
         <div id="tarjeta_ticket">
             <div id="info_ticket">
@@ -31,7 +33,27 @@
             </div>
         </div>
         
-    {% endif %} {% endblock %}
+    {% endif %} 
+
+    <div id="Div-Total">
+        <div id="GB_Botones">
+            <form action="{% url 'TicketOn:eventos'%}">
+                <input type="submit" value="Seguir buscando" />
+            </form>
+            <form method="POST" action="" >
+                {% csrf_token %}
+                <button type="submit">Limpiar carrito</button>
+            </form>
+        </div>
+        <div id="Div-montofinal">
+            <h2>Monto Total: ${{ montofinal }}</h2>
+            <form method="POST" action="" >
+                {% csrf_token %}
+                <button type="submit">Procesar carrito</button>
+            </form>
+        </div>
+    </div>
+    
 </div>
 
 
