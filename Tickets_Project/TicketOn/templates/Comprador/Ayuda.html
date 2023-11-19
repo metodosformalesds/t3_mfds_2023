@@ -1,5 +1,101 @@
 {% extends 'Conex/Conex_comprador.html' %} {% block content %} {%load static%}
 <link rel="stylesheet" href="{% static 'TicketOn/Comprador.css'%}" />
+<style>
+    h1{
+        font-size: 80px;
+        font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+        margin:50px;
+        margin-top: 150px;
+        color:white;
+    }
+
+    .titulo-seccion{
+        font-size: 50px;
+    }
+
+    p{
+        color:white;
+        margin:20px 40px;
+        font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+        font-size: 30px;
+    }
+
+   #QS{
+    text-align:justify;
+    text-justify:inter-word;
+    display:flex;
+    background-color: #235391;
+    width: 90%;
+    margin: auto;
+    height: fit-content;
+    justify-content:space-between;
+   }
+
+   #QS img{
+    width:250px;
+    height:auto;
+    margin:50px;
+   }
+
+   #PF{
+    text-align:justify;
+    text-justify:inter-word;
+    padding-bottom:40px;
+    background-color: #193C69;
+    width: 90%;
+    margin: auto;
+   }
+
+   #CT{
+    background-color: #0F2440;
+    text-align:justify;
+    text-justify:inter-word;
+    padding-bottom:20px;
+    width: 90%;
+    margin: auto;
+    margin-bottom: 150px;
+   }
+</style>
 <h1>AYUDA</h1>
 
+<div id="QS">
+    <div id="info">
+        <h2 class="titulo-seccion">¿Quienes somos?</h2>
+        <p>TicketJaeger es una nueva opcion para todo aquel que busque boletos para sus eventos favoritos, esta diseñado para 
+            ser facil de entender y navegar, esperamos que TicketJaeger te sea util para crear y organizar tus eventos; o que te sirva para 
+            encontrar los eventos que buscas de manera sencilla. Jaeger significa cazador en aleman, y asi como un cazador puedes usar TicketJaeger para 
+            cazar los evento que quieres.
+        </p>
+    </div>
+    
+    <img id="logo" src={%static 'TicketOn/image/Icon.png '%} alt="Logo de
+      TicketJaeger" />
+</div>
+<br>
+<div id="PF">
+    <h2 class="titulo-seccion">Preguntas frecuentes</h2>
+    <p>
+        ¿Cuesta hacer una cuenta en TicketJaeger?<br>
+        -No, registrarse como usuario es completamente gratis<br>
+        <br>
+        ¿Cual es la diferencia entre una cuenta de comprador y una de organizador?<br>
+        -Segun el tipo de usuario se pueden hacer distintas acciones, los compradores pueden buscar entre los 
+        eventos disponilbles para escoger boletos, agregarlos a su carrito y comprarlos<br>
+        <br>
+        ¿Podemos esperar mas de TicketJaeger?<br>
+        -Si, el sistema esta en sus primeros dias de desarrollo y estamos trabajando para traer mayor funcionalidad
+        de la manera mas eficiente posible<br>
+        <br>
+    </p>
+</div>
+<br>
+<div id="CT">
+    <h2 class="titulo-seccion">Contactanos</h2>
+    <p>
+        -Telefono de atencion: 656-495-88-83<br>
+        -Correo de atencion: TicketJaeger@ayuda.com<br>
+        -Instagaram: @TicketJaeger<br>
+        -Facebook: TicketJaeger<br>
+    </p>
+</div>
 {% endblock %}
