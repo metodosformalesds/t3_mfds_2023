@@ -197,8 +197,10 @@ def carrito(request):
 
     # Obtener todos los tickets en el carrito
     tickets_en_carrito = carrito.tickets.all()
+    montofinal = sum(ticket.precio for ticket in tickets_en_carrito)
+    print("Valor de montofinal:", montofinal)
 
-    return render(request, 'Comprador/Carrito.html', {'tickets_en_carrito': tickets_en_carrito})
+    return render(request, 'Comprador/Carrito.html', {'tickets_en_carrito': tickets_en_carrito, 'montofinal': montofinal})
 
 @comprador_required
 def detalles_evento(request,nombre_evento,evento_slug):
@@ -323,7 +325,7 @@ def quitar_del_carrito(request, ticket_id):
         carrito.tickets.remove(ticket)
 
         ticket.delete()
-        
+
         messages.success(request, 'Boleto quitado del carrito exitosamente.')
 
     return redirect('TicketOn:carrito')
