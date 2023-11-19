@@ -20,7 +20,11 @@
                 <div id="div_precio">
                     <h2>$ {{evento.precio}}<h2>
                 </div>
-                <img src="{{evento.imagen.url}}"></img>
+                {% if evento.imagen %}
+                    <img src="{{ evento.imagen.url }}" class="evento-img"></img>
+                {% else %}
+                    <img src="{% static 'TicketOn/image/default_event_image.jpg' %}" class="evento-img"></img>
+                {% endif %}
                 <div id="div_cupos">
                     <h2>Cupos disponibles: {{evento.cupo}}</h2>
                 </div>

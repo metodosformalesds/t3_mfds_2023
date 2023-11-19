@@ -3,6 +3,7 @@ from django.urls import include, path
 from . import views
 from django.urls import path,include
 from . import views
+from .views import eliminar_evento
 
 app_name = "TicketOn"
 urlpatterns = [
@@ -30,5 +31,6 @@ urlpatterns = [
     path('organizador/eventos/creacion/',views.Creacion_de_eventos, name='creacion_de_eventos'),
     path('organizador/eventos/editar/<slug:evento_slug>/', views.editar_evento, name='editar_evento'),
     path('organizador/ventas/',views.Ventas, name='ventas'),
+    path('evento/eliminar/<slug:evento_slug>/', eliminar_evento, name='evento_eliminar'),
 
 ]

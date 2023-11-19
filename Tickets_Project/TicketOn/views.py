@@ -242,19 +242,27 @@ def editar_evento(request, evento_slug):
         return redirect("TicketOn:eventos_en_curso")
 
     if request.method == 'POST':
+        if 'eliminar_evento' in request.POST:
+            evento.delete()
+            return redirect("TicketOn:eventos_en_curso")
+
         evento_form = EventosForm(request.POST, request.FILES, instance=evento)
         if evento_form.is_valid():
             evento_form.save()
-
             return redirect("TicketOn:eventos_en_curso")
     else:
         evento_form = EventosForm(instance=evento)
 
     return render(request, 'Organizador/Editar_eventos.html', {'Evento_form': evento_form, 'evento': evento})
 
+def eliminar_evento(request, evento_slug):
+    evento = get_object_or_404(Evento, slug=evento_slug)
 
+    if request.method == 'POST' and 'eliminar_evento' in request.POST:
+        evento.delete()
+        return redirect("TicketOn:eventos_en_curso")
 
-
+    return render(request, 'ruta_a_tu_plantilla_eliminar_evento.html', {'evento': evento})
 
 #Sistema logico de tickets
 def generar_codigo():
