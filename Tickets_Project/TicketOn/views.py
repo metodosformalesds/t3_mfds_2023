@@ -329,3 +329,14 @@ def quitar_del_carrito(request, ticket_id):
         messages.success(request, 'Boleto quitado del carrito exitosamente.')
 
     return redirect('TicketOn:carrito')
+
+def limpiar_carrito(request):
+    comprador_actual = Comprador.objects.get(usuario=request.user)
+    carrito, creado = Carrito.objects.get_or_create(comprador=comprador_actual)
+
+    # Eliminar todos los tickets del carrito
+    carrito.tickets.clear()
+
+    messages.success(request, 'Carrito limpiado exitosamente.')
+
+    return redirect('TicketOn:carrito')

@@ -1,5 +1,69 @@
 {% extends 'Conex/Conex_comprador.html' %} {% block content %} {% load static %}
-<link rel="stylesheet" href="{% static 'TicketOn/Comprador.css' %}" />
+
+<link rel="stylesheet" href="{% static 'TicketOn/Carrito.css' %}" />
+
+<h1>Tu carrito</h1>
+
+<div id="Carrito">
+    {% if tickets_en_carrito %}
+        {% for ticket in tickets_en_carrito %}
+        <div id="tarjeta_ticket">
+            {% if ticket.evento.imagen %}
+            <img src="{{ ticket.evento.imagen.url }}" class="evento-img"></img>
+        {% else %}
+            <img src="{% static 'TicketOn/image/default_event_image.jpg' %}" class="evento-img"></img>
+        {% endif %}
+            
+            <div id="info_ticket">
+                <div id="linea1"><h2>{{ ticket.evento.nombre }}</h2><h3> ${{ ticket.precio }} - ID: {{ ticket.codigo }}</h3></div>
+                <div class="linea"><h3>{{ ticket.evento.fecha }} - {{ ticket.evento.hora}}</h3></div>
+                <div class="linea"><h3>{{ ticket.evento.lugar }}</h3></div>
+            </div>
+            <div id="Botones">
+                <form action="{% url 'TicketOn:detalles_evento' ticket.evento.nombre ticket.evento.slug%}">
+                    <input type="submit" value="Ver evento" />
+                </form>
+                <form method="POST" action="{% url 'TicketOn:quitar_del_carrito' ticket.id %}" >
+                    {% csrf_token %}
+                    <button type="submit">Quitar del carrito</button>
+                </form>
+            </div>
+        </div>
+        {% endfor %}
+
+    {% else %}
+        <div id="tarjeta_ticket">
+            <div id="info_ticket">
+                <h2>El carrito está vacío.</h2>
+            </div>
+        </div>
+        
+    {% endif %} 
+
+    <div id="Div-Total">
+        <div id="GB_Botones">
+            <form action="{% url 'TicketOn:eventos'%}">
+                <input type="submit" value="Seguir buscando" />
+            </form>
+            <form method="POST"  action="{% url 'TicketOn:limpiar_carrito' %}" >
+                {% csrf_token %}
+                <button type="submit">Limpiar carrito</button>
+            </form>
+        </div>
+        <div id="Div-montofinal">
+            <h2>Monto Total: ${{ montofinal }}</h2>
+            <form method="POST" action="" >
+                {% csrf_token %}
+                <button type="submit">Procesar carrito</button>
+            </form>
+        </div>
+    </div>
+    
+</div>
+
+
+
+<!--<link rel="stylesheet" href="{% static 'TicketOn/Comprador.css' %}" />
 
 <style>
   .quitarticket {
@@ -35,4 +99,5 @@
 
 {% else %}
 <a>El carrito está vacío.</a>
-{% endif %} {% endblock %}
+{% endif %} {% endblock %}-->
+

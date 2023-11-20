@@ -6,6 +6,7 @@ from . import views
 from .views import eliminar_evento
 from .views import agregar_al_carrito
 from .views import quitar_del_carrito
+from .views import limpiar_carrito
 
 app_name = "TicketOn"
 urlpatterns = [
@@ -31,6 +32,7 @@ urlpatterns = [
     #sistema de pagos
     path('evento/agregar_al_carrito/<slug:evento_slug>/', agregar_al_carrito, name='agregar_al_carrito'),
     path('quitar_del_carrito/<int:ticket_id>/', quitar_del_carrito, name='quitar_del_carrito'),
+    path('limpiar_carrito/', limpiar_carrito, name='limpiar_carrito'),
 
 
     #Organizador
