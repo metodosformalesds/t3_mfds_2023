@@ -334,8 +334,9 @@ def limpiar_carrito(request):
     comprador_actual = Comprador.objects.get(usuario=request.user)
     carrito, creado = Carrito.objects.get_or_create(comprador=comprador_actual)
 
-    # Eliminar todos los tickets del carrito
-    carrito.tickets.clear()
+    # Eliminar los tickets del carrito de la base de datos
+    for ticket in carrito.tickets.all():
+        ticket.delete()
 
     messages.success(request, 'Carrito limpiado exitosamente.')
 
