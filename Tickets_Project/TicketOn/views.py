@@ -341,3 +341,14 @@ def limpiar_carrito(request):
     messages.success(request, 'Carrito limpiado exitosamente.')
 
     return redirect('TicketOn:carrito')
+
+def pago_contarjeta(request):
+    # Obtener el carrito del comprador actual
+    comprador_actual = Comprador.objects.get(usuario=request.user)
+    carrito, creado = Carrito.objects.get_or_create(comprador=comprador_actual)
+
+    # Obtener todos los tickets en el carrito
+    tickets_en_carrito = carrito.tickets.all()
+    montofinal = sum(ticket.precio for ticket in tickets_en_carrito)
+
+    return render(request, 'Comprador/Pago_tarjeta.html', {'tickets_en_carrito': tickets_en_carrito, 'montofinal': montofinal})
