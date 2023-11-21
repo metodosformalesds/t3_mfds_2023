@@ -1,6 +1,6 @@
 {% extends 'Conex/Conex_organizador.html' %} {% block content %} {%load static%}
 <link rel="stylesheet" href="{% static 'TicketOn/Organizador.css'%}" />
-<h1>Eventos en Curso</h1>
+
 
 <style>
   #imagenevento {
@@ -8,13 +8,76 @@
     margin-top: 15px;
     width: 400px;
     height: 300px;
+    margin-left: auto;
+    margin-right: auto;
   }
+
+  .center-container {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.center-container h1 {
+    text-align: center;
+    color: #fff; 
+}
+
+#Espacio-eventos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 50px 50px;
+    margin: auto;
+    width: 90%;
+    height: fit-content;
+}
+
+.Tarjeta-evento {
+    list-style-type: none;
+    width: 500px;
+    text-decoration: none;
+    background-color: #fff;
+    border-radius: 20px;
+    margin-bottom: 20px; 
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+.Tarjeta-evento img {
+    width: 100%;
+    height: 250px;
+    border-radius: 20px 20px 0px 0px;
+}
+
+.Tarjeta-evento button{
+    width: 50%;
+    padding: 8px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    background-color:#454;
+    border: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.Tarjeta-evento button:hover {
+  background-color:  #4caf50;
+    color: #fff;
+
+}
+
 </style>
 
+<div class="center-container">
+  <h1>Eventos en Curso</h1>
 {% if eventos_en_curso %}
-<ul>
+<ul id=" Espacio-eventos">
   {% for evento in eventos_en_curso %}
-  <li>
+  <li class="Tarjeta-evento">
     <strong>{{ evento.nombre }}</strong><br />
     Lugar: {{ evento.lugar }}<br />
     Fecha: {{ evento.fecha }}<br />
@@ -28,9 +91,16 @@
       alt="{{ evento.nombre }} imagen"
     />
     {% endif %}
+    <a href="{% url 'TicketOn:editar_evento' evento.slug %}">
+      <button type="submit">
+        Editar
+      </button>
+    </a>
   </li>
   {% endfor %}
 </ul>
-{% else %}
-<p>No hay eventos en curso actualmente.</p>
-{% endif %} {% endblock %}
+  {% else %}
+   <p>No hay eventos en curso actualmente.</p>
+  {% endif %}
+</div>
+{% endblock %}
