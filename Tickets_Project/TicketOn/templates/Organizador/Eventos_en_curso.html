@@ -91,7 +91,9 @@
       alt="{{ evento.nombre }} imagen"
     />
     {% endif %}
-    <a href="{% url 'TicketOn:editar_evento' evento.slug %}">
+    
+    <a href="{% url 'TicketOn:editar_evento' evento.slug %}"></a>
+
       <button type="submit">
         Editar
       </button>
