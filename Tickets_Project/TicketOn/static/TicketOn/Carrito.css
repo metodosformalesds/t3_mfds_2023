@@ -9,6 +9,7 @@ body {
   }
   
   #main-nav_1 {
+    z-index: 10;
     display: flex;
     padding: 5px 5%;
     justify-content: space-between;
@@ -16,7 +17,7 @@ body {
     background-color: #357ede;
     height: 70px;
     top: 0;
-    position: fixed;
+    position:sticky;
     width: 100%;
   }
   

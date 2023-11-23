@@ -1,5 +1,6 @@
 {% extends 'Conex/Conex_comprador.html' %} {% block content %} {%load static%}
 <link rel="stylesheet" href="{% static 'TicketOn/Eventos.css'%}" />
+<title>TicketJaeger - Comprador - Eventos</title>
 
 
 <div id="Div-Busqueda">
@@ -7,7 +8,7 @@
         {% csrf_token %}
         <label for="nombre">Nombre:</label>
         <input id="nombre" name="nombre" type="text" placeholder="{{nombre_busq}}">
-
+        
         <label for="tipo">Tipo:</label>
         <input id="tipo" name="tipo" type="text" placeholder="{{tipo_busq}}">
 
@@ -32,8 +33,10 @@
                     <img src="{% static 'TicketOn/image/default_event_image.jpg' %}" class="evento-img"></img>
                 {% endif %}
             <div class="Evento-info">
-                <h2>{{evento.nombre}}</h2>
-                <h3>{{evento.fecha}}</h3>
+                <div>
+                    <h2>{{evento.nombre}}</h2>
+                    <h3>{{evento.fecha}}</h3>
+                </div>
                 <form action="{{evento.nombre}}/{{evento.slug}}">
                     <input type="submit" value="Ver evento" />
                 </form>
@@ -41,6 +44,16 @@
         </div>
     {%endfor%}
 </div>
+
+<footer>
+    <p id="NombreTJ" href="/home/">TicketJaeger</p>
+    <ul>
+        <li>Telefono de atencion: 656-495-88-83<br></li>
+        <li>Correo de atencion: TicketJaeger@ayuda.com<br></li>
+        <li>Instagaram: @TicketJaeger<br></li>
+        <li>Facebook: TicketJaeger<br></li>
+    </ul>
+</footer>
 
 <!--<script type="text/javascript" src="{% static 'TicketOn/Eventos.js'%}" ></script>-->
 

@@ -9,6 +9,7 @@ body {
 }
 
 #main-nav_1 {
+  z-index: 10;
   display: flex;
   padding: 5px 5%;
   justify-content: space-between;
@@ -81,6 +82,10 @@ body {
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+}
+
+hr{
+  border-top: 1px solid black;
 }
 
 /*---------------------------------Cuerpo---------------------------------*/

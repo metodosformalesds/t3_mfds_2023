@@ -2,6 +2,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
   </head>
   <body>
     <header>
@@ -10,14 +11,15 @@
           <div id="divlogo">
             {%load static%} <img src={%static 'TicketOn/image/Icon.png '%}
             class="Logoimg"/>
-            <a id="NombreTJ">TicketJaeger</a>
+            <a id="NombreTJ" href="/home/">TicketJaeger</a>
           </div>
           <div id="opciones">
-            <a href="/comprador/eventos/" id="NombreTJ">Eventos</a>
-            <a href="/comprador/carrito/" id="NombreTJ">Carrito</a>
-            <a href="/comprador/ayuda/" id="NombreTJ">Ayuda</a>
+            <hr>
+            <a href="/comprador/eventos/" id="NombreTJ">Eventos</a><hr>
+            <a href="/comprador/carrito/" id="NombreTJ">Carrito</a><hr>
+            <a href="/comprador/ayuda/" id="NombreTJ">Ayuda</a><hr>
           </div>
-          <a href="{% url 'TicketOn:user-logout' %}" id="NombreTJ"
+          <a id="cerr_ses" href="{% url 'TicketOn:user-logout' %}" id="NombreTJ"
             >Cerrar Sesion</a
           >
         </nav>

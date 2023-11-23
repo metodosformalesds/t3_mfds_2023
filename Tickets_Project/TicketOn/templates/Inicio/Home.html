@@ -7,12 +7,12 @@
   <title>TicketJaeger - Inicio</title>
   <style>
     #logoinicio {
-      margin-top: 30px;
+      margin-top: 70px;
       width: 400px;
     }
 
     #title {
-      font-size: 44px;
+      font-size: 80px;
       font-weight: bold;
     }
 
@@ -26,13 +26,35 @@
       font-size: 16px;
       text-align: center;
       text-decoration: none;
-      background-color: #4caf50;
       color: #fff;
       border: 1px solid #4caf50;
       border-radius: 5px;
       cursor: pointer;
       margin-right: 10px;
     }
+
+    #btncomprador{
+      background-color: #357ede;
+      transition-duration: 0.3s;
+    }
+
+    #btncomprador:hover{
+      background-color:#2B64AF;
+      padding:20px 40px;
+      color: #000;
+    }
+
+    #btnorganizador{
+      background-color: #4caf50;
+      transition-duration:0.3s;
+    }
+
+    #btnorganizador:hover{
+      background-color:#3B893E;
+      padding:20px 40px;
+      color: #000;
+    }
+
     #inicio {
       margin: 0;
       padding: 0;
@@ -48,8 +70,8 @@
     TicketJaeger" />
     <div id="title">TicketJaeger</div>
     <div id="buttons">
-      <a href="/comprador/login/" class="button">Comprador</a>
-      <a href="/organizador/login/" class="button">Organizador</a>
+      <a  id="btncomprador" href="/comprador/login/" class="button">Comprador</a>
+      <a id="btnorganizador" href="/organizador/login/" class="button">Organizador</a>
     </div>
   </div>
 </body>
