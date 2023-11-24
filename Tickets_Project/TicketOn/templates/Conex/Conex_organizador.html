@@ -8,18 +8,21 @@
   </head>
   <body>
     <header>
-      <img id="logo" src={%static 'TicketOn/image/Icon.png '%} alt="Logo de
-      TicketJaeger" />
-      <a id="brand" href="/home/">TicketJaeger</a>
-      <nav>
-        <ul>
-          <li><a href="/organizador/eventos/">Eventos en curso</a></li>
-          <li>
-            <a href="/organizador/eventos/creacion/">Creación de eventos</a>
-          </li>
-          <li><a href="/comprador/logout">Cerrar sesión</a></li>
-        </ul>
-      </nav>
+      <div id="main-nav_1">
+        <nav class="main-nav">
+          <div id= "divlogo">
+            <img id="logo" src={%static 'TicketOn/image/Icon.png '%} alt="Logo de
+          TicketJaeger" />
+          <a id="brand" href="/home/">TicketJaeger</a>
+          </div>
+          <div id= "opc">
+            <hr>
+            <a href="/organizador/eventos/">Eventos en curso</a><hr>
+            <a href="/organizador/eventos/creacion/">Creación de eventos</a><hr>          
+          </div>
+          <a href="/comprador/logout">Cerrar sesión</a>
+        </nav>   
+      </div>
     </header>
 
     {% block content %} {% endblock %}
