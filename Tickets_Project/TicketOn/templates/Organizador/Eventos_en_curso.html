@@ -70,7 +70,6 @@
 }
     
 
-
 .Tarjeta-evento img {
     width: 100%;
     height: 250px;
@@ -93,6 +92,8 @@
 .Tarjeta-evento input:hover {
   background-color: #454;
     color: #fff;
+    font-size: 20px;
+    font-weight: bold;
 
 }
 
@@ -139,11 +140,11 @@ footer{
             <img id="imagenevento" src="{{ evento.imagen.url }}" alt="{{ evento.nombre }} imagen" />
           {% endif %}
         
-        <form action="{% url 'TicketOn:editar_evento' evento.slug %}">
-          <input type="submit" value="Editar evento">
-        </form>
+          <form action="{% url 'TicketOn:editar_evento' evento.slug %}">
+            <input type="submit" value="Editar evento">
+          </form>
 
-      </div>
+        </div>
       {% endfor %}
     </div>
   {% else %}
