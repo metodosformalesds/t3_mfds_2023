@@ -3,6 +3,30 @@
 
 
 <style>
+  
+#main-nav_1 a:hover{
+  font-size: 30px;
+  color:#000;
+  opacity: 50%;
+}
+#main-nav_1:hover {
+    box-shadow: 0px 10px 25px #00000043;
+    height: 70px;
+    padding-top: 20px;
+  }
+
+#main-nav_1 {
+    display: flex;
+    padding: 5px 5%;
+    justify-content: space-between;
+    box-shadow: 0px 10px 25px #00000043;
+    background-color: #93c012;
+    height: 60px;
+    top: 0;
+    position: fixed;
+    width: 100%;
+    transition-duration: 0.3s;
+  }
   #imagenevento {
     display: block;
     margin-top: 15px;
@@ -12,36 +36,39 @@
     margin-right: auto;
   }
 
-  .center-container {
+.center-container {
     text-align: center;
     margin-top: 15px;
 }
 
 .center-container h1 {
     text-align: center;
-    color: #fff; 
+    color: #060606; 
 }
 
 #Espacio-eventos {
-    display: flex;
+  display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-    gap: 50px 50px;
+    justify-content: space-around; /* Otra opción: space-between */
+    gap: 20px; /* Ajusta según sea necesario */
     margin: auto;
-    width: 90%;
+    width: 80%;
     height: fit-content;
 }
 
 .Tarjeta-evento {
-    list-style-type: none;
-    width: 500px;
+  list-style-type: none;
+    flex: 0 0 calc(30% - 20px); /* Ajusta el tamaño base y el espacio entre tarjetas según tus preferencias */
     text-decoration: none;
-    background-color: #fff;
+    background-color: rgb(249, 249, 249);
     border-radius: 20px;
-    margin-bottom: 20px; 
-    margin-left: auto;
-    margin-right: auto;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    display: flex; /* Agrega esta línea para establecer la dirección de fila para las imágenes */
+    flex-direction: column;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.496);
 }
+    
 
 
 .Tarjeta-evento img {
@@ -53,7 +80,6 @@
 .Tarjeta-evento input{
     width: 50%;
     padding: 8px;
-    margin-bottom: 10px;
     box-sizing: border-box;
     background-color: #4caf50;
     border: none;
@@ -70,38 +96,69 @@
 
 }
 
+footer{
+    display: flex ;
+    column-gap: 20px ;
+    background-color: #1a390b;
+    text-align:justify;
+    text-justify:inter-word;
+    width: 96%;
+    padding: 30px;
+    height: fit-content;
+  }
+
+  footer ul{
+    color: #fff;
+    margin: auto;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  }
+
+  footer p{
+    text-decoration: none;
+    font-size: 50px;
+    font-weight: bold;
+    color: #E5E5E5;
+    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+    transition-duration: 0.3s;
+  }
 </style>
 
 <div class="center-container">
   <h1>Eventos en Curso</h1>
-{% if eventos_en_curso %}
-<ul id=" Espacio-eventos">
-  {% for evento in eventos_en_curso %}
-  <li class="Tarjeta-evento">
-    <strong>{{ evento.nombre }}</strong><br />
-    Lugar: {{ evento.lugar }}<br />
-    Fecha: {{ evento.fecha }}<br />
-    Hora: {{ evento.hora }}<br />
-    Descripción: {{ evento.descripcion }}<br />
-    Precio: {{ evento.precio }}<br />
-    {% if evento.imagen %}
-    <img
-      id="imagenevento"
-      src="{{ evento.imagen.url }}"
-      alt="{{ evento.nombre }} imagen"
-    />
-    {% endif %}
-    
-    <form action="{% url 'TicketOn:editar_evento' evento.slug %}">
-      <input type="submit" value="Editar evento">
-    </form>
+  {% if eventos_en_curso %}
+    <div id="Espacio-eventos">
+      {% for evento in eventos_en_curso %}
+        <div class="Tarjeta-evento">
+          <strong>{{ evento.nombre }}</strong><br />
+          Lugar: {{ evento.lugar }}<br />
+          Fecha: {{ evento.fecha }}<br />
+          Hora: {{ evento.hora }}<br />
+          Descripción: {{ evento.descripcion }}<br />
+          Precio: {{ evento.precio }}<br />
+          {% if evento.imagen %}
+            <img id="imagenevento" src="{{ evento.imagen.url }}" alt="{{ evento.nombre }} imagen" />
+          {% endif %}
+        
+        <form action="{% url 'TicketOn:editar_evento' evento.slug %}">
+          <input type="submit" value="Editar evento">
+        </form>
 
-      
-  </li>
-  {% endfor %}
-</ul>
+      </div>
+      {% endfor %}
+    </div>
   {% else %}
-   <p>No hay eventos en curso actualmente.</p>
+    <p>No hay eventos en curso actualmente.</p>
   {% endif %}
 </div>
+
+
+<footer>
+  <p id="NombreTJ" href="/home/">TicketJaeger</p>
+  <ul>
+      <li>Telefono de atencion: 656-495-88-83<br></li>
+      <li>Correo de atencion: TicketJaeger@ayuda.com<br></li>
+      <li>Instagaram: @TicketJaeger<br></li>
+      <li>Facebook: TicketJaeger<br></li>
+  </ul>
+</footer>
 {% endblock %}
