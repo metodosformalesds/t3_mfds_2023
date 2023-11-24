@@ -10,17 +10,21 @@
 <div id="Carrito">
     {% if tickets_en_carrito %}
         {% for ticket in tickets_en_carrito %}
-        <div id="tarjeta_ticket">
+        <div class="tarjeta_ticket">
             {% if ticket.evento.imagen %}
-            <img src="{{ ticket.evento.imagen.url }}" class="evento-img"></img>
-        {% else %}
-            <img src="{% static 'TicketOn/image/default_event_image.jpg' %}" class="evento-img"></img>
-        {% endif %}
+                <img src="{{ ticket.evento.imagen.url }}" class="evento-img"></img>
+            {% else %}
+                <img src="{% static 'TicketOn/image/default_event_image.jpg' %}" class="evento-img"></img>
+            {% endif %}
             
             <div id="info_ticket">
-                <div id="linea1"><h2>{{ ticket.evento.nombre }}</h2><h3> ${{ ticket.precio }} - ID: {{ ticket.codigo }}</h3></div>
-                <div class="linea"><h3>{{ ticket.evento.fecha }} - {{ ticket.evento.hora}}</h3></div>
-                <div class="linea"><h3>{{ ticket.evento.lugar }}</h3></div>
+                <div >
+                    <h2>{{ ticket.evento.nombre }}</h2>
+                    <h3> ${{ ticket.precio }} - ID: {{ ticket.codigo }}</h3>
+                    <h3>{{ ticket.evento.fecha }} - {{ ticket.evento.hora}} - {{ ticket.evento.lugar }}</h3>
+                </div>
+                
+                
             </div>
             <div id="Botones">
                 <form action="{% url 'TicketOn:detalles_evento' ticket.evento.nombre ticket.evento.slug%}">
@@ -28,7 +32,7 @@
                 </form>
                 <form method="POST" action="{% url 'TicketOn:quitar_del_carrito' ticket.id %}" >
                     {% csrf_token %}
-                    <button type="submit">Quitar del carrito</button>
+                    <button type="submit">Quitar</button>
                 </form>
             </div>
         </div>
@@ -42,49 +46,61 @@
         </div>
         
     {% endif %} 
-
-    <div id="Div-Total">
-        <div id="GB_Botones">
-            <form action="{% url 'TicketOn:eventos'%}">
-                <input type="submit" value="Seguir buscando" />
-            </form>
-            <form method="POST"  action="{% url 'TicketOn:limpiar_carrito' %}" >
-                {% csrf_token %}
-                <button type="submit">Limpiar carrito</button>
-            </form>
-        </div>
-        <div id="Div-montofinal">
-            <h2>Monto Total: ${{ montofinal }}</h2>
-            
-            <!-- Set up a container element for the button -->
-            <div id="paypal-button-container"></div>
-            <script montofinal="{{montofinal}}">
-                paypal.Buttons({
-                    createOrder: function(data,actions){
-                        return actions.order.create({
-                            purchase_units:[{
-                                amount:{
-                                    value:{{montofinal}}
-                                }
-                            }]
-                        });
-                },
-                onApprove: function(data,acrtions){
-                    return actions.order.capture().then(function(details){
-                        alert('Transaction completed by '+ details.payer.name.given_name);
-                    });
-                }
-                }).render('#paypal-button-container');
-            </script>
-            <!--<form method="POST" action="{% url 'TicketOn:pago_tarjeta'%}" >
-                {% csrf_token %}
-                <button type="submit">Procesar carrito</button>-->
-            </form>
-        </div>
-    </div>
     
 </div>
-
+<div id="Div-Total">
+    <div id="GB_Botones">
+        <form action="{% url 'TicketOn:eventos'%}">
+            <input type="submit" value="Seguir buscando" />
+        </form>
+        <form method="POST"  action="{% url 'TicketOn:limpiar_carrito' %}" >
+            {% csrf_token %}
+            <button type="submit">Limpiar carrito</button>
+        </form>
+        <form method="POST"  action="{% url 'TicketOn:limpiar_carrito' %}" >
+            {% csrf_token %}
+            <button type="submit">Pagar con QR</button>
+        </form>
+    </div>
+    <div id="Div-montofinal">
+        <h2>Monto Total: ${{ montofinal }}</h2>
+        
+        <!-- Set up a container element for the button -->
+        <div id="paypal-button-container"></div>
+        <script montofinal="{{montofinal}}">
+            paypal.Buttons({
+                createOrder: function(data,actions){
+                    return actions.order.create({
+                        purchase_units:[{
+                            amount:{
+                                value:{{montofinal}}
+                            }
+                        }]
+                    });
+            },
+            onApprove: function(data,acrtions){
+                return actions.order.capture().then(function(details){
+                    alert('Transaction completed by '+ details.payer.name.given_name);
+                });
+            }
+            }).render('#paypal-button-container');
+        </script>
+        <!--<form method="POST" action="{% url 'TicketOn:pago_tarjeta'%}" >
+            {% csrf_token %}
+            <button type="submit">Procesar carrito</button>-->
+        </form>
+    </div>
+</div>
+<br><br>
+<footer>
+    <p href="/home/">TicketJaeger</p>
+    <ul>
+        <li>Telefono de atencion: 656-495-88-83<br></li>
+        <li>Correo de atencion: TicketJaeger@ayuda.com<br></li>
+        <li>Instagaram: @TicketJaeger<br></li>
+        <li>Facebook: TicketJaeger<br></li>
+    </ul>
+</footer>
 
 
 <!--<link rel="stylesheet" href="{% static 'TicketOn/Comprador.css' %}" />

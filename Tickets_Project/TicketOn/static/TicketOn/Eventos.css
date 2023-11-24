@@ -20,6 +20,7 @@ body {
     position: fixed;
     width: 100%;
     transition-duration: 0.3s;
+    z-index: 10;
   }
 
   #main-nav_1:hover {
@@ -64,8 +65,6 @@ body {
   #cerr_ses:hover{
     font-size: 20px !important;
   }
-
-  
 
   .main-nav hr{
     border: 1px solid black;
@@ -127,7 +126,6 @@ body {
   .Tarjeta-evento img{
     width: 50%;
     height: auto;
-    /*border-radius: 20px;*/
   }
 
   .Tarjeta-evento form{
@@ -168,6 +166,10 @@ body {
     font-weight: bolder;
   }
 
+  .Evento-info h3{
+    
+    opacity: 60%;
+  }
   
 
   #Div-Busqueda{
