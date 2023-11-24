@@ -198,7 +198,7 @@ def carrito(request):
     # Obtener todos los tickets en el carrito
     tickets_en_carrito = carrito.tickets.all()
     montofinal = sum(ticket.precio for ticket in tickets_en_carrito)
-    print("Valor de montofinal:", montofinal)
+    
 
     return render(request, 'Comprador/Carrito.html', {'tickets_en_carrito': tickets_en_carrito, 'montofinal': montofinal})
 

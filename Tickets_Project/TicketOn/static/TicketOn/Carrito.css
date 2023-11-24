@@ -1,9 +1,10 @@
 /*---------------------------------Menu de navegacion---------------------------------*/
 body {
-    margin: 0px;
-    box-sizing: border-box;
-    background: #35b5de;
-  }
+  margin: 0px;
+  box-sizing: border-box;
+  /*background: #35b5de;*/
+  background-color: #F4F2F2;
+}
   .margen {
     margin-top: 5%;
   }
@@ -89,7 +90,7 @@ h1{
     font-size: 80px;
     font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
     margin:30px;
-    margin-top: 130px;
+    margin-top: 0px;
     color:white;
 }
 
