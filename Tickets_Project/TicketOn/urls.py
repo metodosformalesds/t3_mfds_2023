@@ -33,7 +33,7 @@ urlpatterns = [
     path('evento/agregar_al_carrito/<slug:evento_slug>/', agregar_al_carrito, name='agregar_al_carrito'),
     path('quitar_del_carrito/<int:ticket_id>/', quitar_del_carrito, name='quitar_del_carrito'),
     path('limpiar_carrito/', limpiar_carrito, name='limpiar_carrito'),
-    path('comprador/pago_con_tarjeta',views.pago_contarjeta,name='pago_tarjeta'),
+    path('comprador/pago_con_QR',views.pago_QR,name='pago_qr'),
 
 
     #Organizador

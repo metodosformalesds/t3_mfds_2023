@@ -23,8 +23,6 @@
                     <h3> ${{ ticket.precio }} - ID: {{ ticket.codigo }}</h3>
                     <h3>{{ ticket.evento.fecha }} - {{ ticket.evento.hora}} - {{ ticket.evento.lugar }}</h3>
                 </div>
-                
-                
             </div>
             <div id="Botones">
                 <form action="{% url 'TicketOn:detalles_evento' ticket.evento.nombre ticket.evento.slug%}">
@@ -57,7 +55,7 @@
             {% csrf_token %}
             <button type="submit">Limpiar carrito</button>
         </form>
-        <form method="POST"  action="{% url 'TicketOn:limpiar_carrito' %}" >
+        <form method="POST"  action="{% url 'TicketOn:pago_qr' %}" >
             {% csrf_token %}
             <button type="submit">Pagar con QR</button>
         </form>
@@ -85,10 +83,6 @@
             }
             }).render('#paypal-button-container');
         </script>
-        <!--<form method="POST" action="{% url 'TicketOn:pago_tarjeta'%}" >
-            {% csrf_token %}
-            <button type="submit">Procesar carrito</button>-->
-        </form>
     </div>
 </div>
 <br><br>

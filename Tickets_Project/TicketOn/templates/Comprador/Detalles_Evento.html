@@ -11,59 +11,42 @@
 
     </head>
     <body>
-        <div id="Tipo_evento">
-            <h2>Tipo: {{evento.tipo}}<h2>
-        </div>
-        <div id="info_evento">
-            <h2 id="nombre_evento">{{evento.nombre}}</h2>
-            <div id="bloque_1">
-                <div id="div_precio">
-                    <h2>$ {{evento.precio}}<h2>
-                </div>
-                {% if evento.imagen %}
-                    <img src="{{ evento.imagen.url }}" class="evento-img"></img>
-                {% else %}
-                    <img src="{% static 'TicketOn/image/default_event_image.jpg' %}" class="evento-img"></img>
-                {% endif %}
-                <div id="div_cupos">
-                    <h2>Cupos disponibles: {{evento.cupo}}</h2>
-                </div>
-            </div>
-            <div id="bloque_2">
-                <h2>Descripción</h2>
+        <br>
+        <div id="Seccion_1">
+            {% if evento.imagen %}
+                <img src="{{ evento.imagen.url }}" class="evento-img"></img>
+            {% else %}
+                <img src="{% static 'TicketOn/image/default_event_image.jpg' %}" class="evento-img"></img>
+            {% endif %}
+            <div id="Seccion_1_Info">
+                <h2 id="nombre_evento">{{evento.nombre}}</h2>
                 <p>{{evento.descripcion}}<p>
             </div>
-
-            <div id="div_ubicacion">
-                <h2>Ubicacion:</h2>
-                <h2>{{evento.lugar}}</h2>
-            </div>
-
-            <div id="bloque_3">
-                <div id="bl3_1">
-                    <div id="div_fechahora">
-                        <h2>Fecha y Hora:</h2>
-                        <h2>{{evento.fecha}} - {{evento.hora}}</h2>
-                    </div>
-        
-                    <div id="div_organizador">
-                        <h2>Organizador:</h2>
-                        <h2>{{evento.organizador}}</h2>
-                    </div>
-                </div>
-                <div id="bl3_2">
-                    <form method="POST" action="{% url 'TicketOn:agregar_al_carrito' evento.slug %}">
-                        {% csrf_token %}
-                        <label for="cant_tickets">Cantidad de boletos:</label>
-                        <input type="number" id="cant_tickets" name="cant_tickets" min="1">
-                        <input type="submit" value="Agregar al carrito">
-                    </form>
-                </div>
-            </div>
-
-            
-
         </div>
+        <div id="Seccion_2">
+            <div id="Seccion_2_Info">
+                <p>Oprganizador: {{evento.organizador}} - Precio: $ {{evento.precio}} </p>
+                <p>Ubicacion: {{evento.lugar}} - Cupos disponibles: {{evento.cupo}}</p>
+                <p>Fecha: {{evento.fecha}}  - Hora: {{evento.hora}} </p>
+            </div>
+            <div id="Seccion_Agregar">
+                <form method="POST" action="{% url 'TicketOn:agregar_al_carrito' evento.slug %}">
+                    {% csrf_token %}
+                    <label for="cant_tickets">Cantidad de boletos:</label>
+                    <input id="cant" type="number" id="cant_tickets" name="cant_tickets" min="1"><br><br>
+                    <input id="btn" type="submit" value="Agregar al carrito">
+                </form>
+            </div>
+        </div>
+        <footer>
+            <p href="/home/">TicketJaeger</p>
+            <ul>
+                <li>Telefono de atencion: 656-495-88-83<br></li>
+                <li>Correo de atencion: TicketJaeger@ayuda.com<br></li>
+                <li>Instagaram: @TicketJaeger<br></li>
+                <li>Facebook: TicketJaeger<br></li>
+            </ul>
+        </footer>
     </body>
     {%endblock%}
 </html>

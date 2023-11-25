@@ -342,7 +342,7 @@ def limpiar_carrito(request):
 
     return redirect('TicketOn:carrito')
 
-def pago_contarjeta(request):
+def pago_QR(request):
     # Obtener el carrito del comprador actual
     comprador_actual = Comprador.objects.get(usuario=request.user)
     carrito, creado = Carrito.objects.get_or_create(comprador=comprador_actual)
@@ -351,4 +351,4 @@ def pago_contarjeta(request):
     tickets_en_carrito = carrito.tickets.all()
     montofinal = sum(ticket.precio for ticket in tickets_en_carrito)
 
-    return render(request, 'Comprador/Pago_tarjeta.html', {'tickets_en_carrito': tickets_en_carrito, 'montofinal': montofinal})
+    return render(request, 'Comprador/Pago_QR.html', {'tickets_en_carrito': tickets_en_carrito, 'montofinal': montofinal})
