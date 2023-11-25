@@ -11,10 +11,10 @@ https://www.figma.com/proto/wj7L9oKvd7ewDKJP8aDRtL/Ticket-Jaeger?type=design&nod
 https://t3-mfds-2023.onrender.com/
 
 # Cuentas Test
-Cuenta Organizador
+# Cuenta Organizador
 usuario=organizador
 contraseña=UgBTKcduri76hDr
 
-Cuenta Comprador
+# Cuenta Comprador
 usuario=comprador
 contraseña=2rf2f3AQf23a
