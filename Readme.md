@@ -10,7 +10,6 @@ https://www.figma.com/proto/wj7L9oKvd7ewDKJP8aDRtL/Ticket-Jaeger?type=design&nod
 # Sitio web
 https://t3-mfds-2023.onrender.com/
 
-# Cuentas Test
 # Cuenta Organizador
 usuario=organizador
 contraseña=UgBTKcduri76hDr
