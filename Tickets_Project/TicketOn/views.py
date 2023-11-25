@@ -1,6 +1,6 @@
 from typing import Self
 from functools import wraps
-from django.http import HttpResponse
+from django.http import HttpResponse,JsonResponse
 from django.shortcuts import get_object_or_404, render, redirect
 from .forms import *
 from .models import *
@@ -13,6 +13,9 @@ import string
 from copy import deepcopy
 from datetime import date
 from django.contrib import messages
+import requests
+import qrcode
+from Tickets_Project.settings import MEDIA_ROOT
 
 #Sesión comprador
 def register(request):
@@ -351,4 +354,21 @@ def pago_QR(request):
     tickets_en_carrito = carrito.tickets.all()
     montofinal = sum(ticket.precio for ticket in tickets_en_carrito)
 
-    return render(request, 'Comprador/Pago_QR.html', {'tickets_en_carrito': tickets_en_carrito, 'montofinal': montofinal})
+    clabe = '6461804993266821'
+    headers = {
+        "Content-Type": "application/json",
+        "x-api-key": "8492dfa6-8b3d-4e80-b4cf-84a18c4e79bb"
+    }
+    try:
+        url = "https://dvls3c2bv5okpg6mk3u2otgyaq0gecjv.lambda-url.us-east-1.on.aws/?clabe=" + clabe + "&amount=" + str(montofinal) 
+        response = requests.get(url, headers=headers)
+        pagoCODI=response.json()
+        img =qrcode.make(pagoCODI.get("codi"))
+        f=open(MEDIA_ROOT/"output.png","wb")
+        img.save(f)
+
+        return render(request, 'Comprador/Pago_QR.html', {'tickets_en_carrito': tickets_en_carrito, 'montofinal': montofinal,'img': '/media/output.png'})
+    except Exception as vr:
+        return  JsonResponse({'error':str(vr)},status=400)
+
+    
